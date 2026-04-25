@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Trionexatech | Smart Solutions: CCTV, Design, Development</title>
+  <!-- Tailwind CSS CDN + basic interceptions plus Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom override for color scheme (exact colors + dropdown enhancements) -->
+  <style>
+    /* custom color scheme variables & overrides to blend exact palette */
+    :root {
+      --primary-deep: #0F0E47;
+      --primary-mid: #272757;
+      --primary-soft: #505081;
+      --primary-light: #8686AC;
+      --white-light: #F9FAFE;
+    }
+    body {
+      background-color: var(--white-light);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+    /* custom transition for dropdown, smooth interactive */
+    .dropdown-menu {
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+    }
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    /* custom button & focus ring */
+    .btn-primary {
+      background-color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-deep);
+      transform: translateY(-2px);
+    }
+    .btn-outline-custom {
+      border: 1.5px solid var(--primary-mid);
+      color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-outline-custom:hover {
+      background-color: var(--primary-mid);
+      color: white;
+    }
+    .footer-links a:hover {
+      color: var(--primary-light);
+      transition: 0.2s;
+    }
+    .service-card {
+      background: white;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(39, 39, 87, 0.2);
+      border-color: var(--primary-soft);
+    }
+    input, textarea {
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-mid);
+      box-shadow: 0 0 0 3px rgba(39, 39, 87, 0.2);
+    }
+    /* logo placeholder wrapper */
+    .logo-placeholder {
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ================= NAVIGATION BAR ================= -->
+  <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#8686AC]/30">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <!-- Logo Area (user can replace actual logo) -->
+         <div class="flex items-center">
+          <div class="w-48 h-12 md:w-56 md:h-20 flex items-center justify-center">
+            <img id="companyLogo" src="/logo.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+        </div>
+        
+
+        <!-- Desktop Menu + Dropdown (hidden on mobile) -->
+        <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <a href="/index.html" class="font-medium transition hover:border-b-2 border-[#272757]" style="color:#272757;">Home</a>
+          
+          <!-- Services Dropdown (desktop) -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#272757;">
+              Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+              <a href="/cctv.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-video text-[#505081] w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-palette text-[#505081] w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-code text-[#505081] w-5"></i>Web Development</a>
+            </div>
+          </div>
+          
+          <a href="#contact" class="font-medium transition hover:border-b-2 border-[#272757]" style="color:#272757;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileMenuBtn" class="focus:outline-none text-[#272757] text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Dropdown Menu (hidden by default) -->
+      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#8686AC]/30 pb-4 px-2">
+        <div class="flex flex-col space-y-3 mt-3">
+          <a href="#home" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">Home</a>
+          <!-- mobile services with sub (collapsible) -->
+          <div x-data="{ open: false }" id="mobileServices">
+            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">
+              Services <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
+              <a href="#cctv" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
+              <a href="#graphic" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
+              <a href="#web" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
+            </div>
+          </div>
+          <a href="#contact" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-[#F9FAFE] to-[#EFEFF8]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
+      <!-- Hero left content -->
+      <div class="flex-1 text-center md:text-left">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-[#272757]/10 text-[#272757] text-sm font-semibold mb-5 backdrop-blur-sm">
+          <i class="fas fa-shield-alt mr-1"></i> Next-Gen Digital Solutions
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight" style="color:#0F0E47;">
+          Secure & Creative <br> <span style="color:#505081;">Tech Ecosystem</span>
+        </h1>
+        <p class="text-lg text-gray-600 mt-6 max-w-lg mx-auto md:mx-0" style="color:#3f3d6b;">
+          CCTV Surveillance | Graphic Designing | Web Development — Reliable, modern, and crafted for your business growth.
+        </p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
+          <a href="#contact" class="btn-primary text-white px-7 py-3 rounded-full shadow-lg font-semibold flex items-center gap-2">Explore Services <i class="fas fa-arrow-right"></i></a>
+          <a href="#getintouch" class="btn-outline-custom px-6 py-3 rounded-full font-semibold flex items-center gap-2">Get Free Consultation</a>
+        </div>
+        <!-- trust badge -->
+        <div class="flex gap-6 justify-center md:justify-start mt-12 text-sm text-[#505081]">
+          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> 100+ Projects</span>
+          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> 24/7 Support</span>
+          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> Scalable</span>
+        </div>
+      </div>
+      <!-- Hero image / graphic -->
+      <div class="flex-1 flex justify-center">
+        <div class="relative w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-[#8686AC]/20 to-[#272757]/10 flex items-center justify-center shadow-2xl">
+          <div class="w-64 h-64 bg-white/60 rounded-full backdrop-blur-sm flex items-center justify-center">
+            <img src="https://placehold.co/500x500/0F0E47/FFFFFF?text=TNX&font=montserrat" alt="Trionexatech hero" class="w-48 rounded-full opacity-90">
+          </div>
+          <!-- floating icons -->
+          <i class="fas fa-camera absolute top-8 left-8 text-3xl text-[#505081] bg-white p-2 rounded-full shadow-md"></i>
+          <i class="fas fa-pen-fancy absolute bottom-10 right-6 text-3xl text-[#272757] bg-white p-2 rounded-full shadow-md"></i>
+          <i class="fas fa-laptop-code absolute top-20 right-12 text-2xl text-[#8686AC] bg-white p-2 rounded-full shadow-md"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MIDDLE SECTION: Services We Provide ================= -->
+  <section id="services-highlight" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold" style="color:#0F0E47;">Core <span style="color:#505081;">Expertise</span></h2>
+        <div class="w-24 h-1 bg-[#272757] mx-auto mt-4 rounded-full"></div>
+        <p class="text-gray-600 mt-5">We deliver high-end solutions tailored to modern business challenges.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- CCTV Card -->
+        <div class="service-card p-6 border border-[#8686AC]/20">
+          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-video text-2xl" style="color:#272757;"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">CCTV Surveillance</h3>
+          <p class="text-gray-600 mb-4" style="color:#3c3b64;">IP cameras, AI analytics, night vision & remote monitoring — secure your premises 24x7 with enterprise-grade systems.</p>
+          <ul class="space-y-1 text-sm text-[#505081]">
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> HD & 4K Cameras</li>
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Cloud & local storage</li>
+          </ul>
+        </div>
+        <!-- Graphic Designing -->
+        <div class="service-card p-6 border border-[#8686AC]/20">
+          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-palette text-2xl" style="color:#272757;"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">Graphic Designing</h3>
+          <p class="text-gray-600 mb-4">Modern branding, logos, social media creatives, UI/UX design that communicates your brand voice visually.</p>
+          <ul class="space-y-1 text-sm text-[#505081]">
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Logo & Brand Identity</li>
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Print & Digital Assets</li>
+          </ul>
+        </div>
+        <!-- Web Development -->
+        <div class="service-card p-6 border border-[#8686AC]/20">
+          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-code text-2xl" style="color:#272757;"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">Web Development</h3>
+          <p class="text-gray-600 mb-4">Responsive websites, eCommerce, React/Tailwind apps, CMS integration — performance-first development.</p>
+          <ul class="space-y-1 text-sm text-[#505081]">
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Full-stack & Frontend</li>
+            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> SEO Optimized</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- optional quote / why us -->
+  <div class="bg-gradient-to-r from-[#0F0E47] to-[#272757] text-white py-12">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <i class="fas fa-quote-left text-3xl text-[#8686AC] mb-4"></i>
+      <p class="text-lg md:text-xl italic font-light">Trionexatech bridges next-gen surveillance, stunning design, and robust web development — all under one roof.</p>
+    </div>
+  </div>
+
+  <!-- ================= CONTACT INFO + FORM (GET IN TOUCH) ================= -->
+  <section id="contact" class="py-16 md:py-24 bg-[#F2F3FB]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <!-- left side contact info -->
+        <div>
+          <span class="text-[#505081] font-semibold uppercase tracking-wider text-sm">Get in touch</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#0F0E47;">Let’s discuss <br> your project</h2>
+          <div class="mt-6 space-y-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-phone-alt text-[#272757]"></i></div>
+              <div><p class="font-medium">+91 98765 43210</p><p class="text-sm text-gray-500">Mon-Fri 9am-6pm</p></div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-envelope text-[#272757]"></i></div>
+              <div><p class="font-medium">hello@trionexatech.com</p><p class="text-sm text-gray-500">support@trionexatech.com</p></div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-map-marker-alt text-[#272757]"></i></div>
+              <div><p class="font-medium">Innovation Hub, Tech Park, Bangalore - 560001</p></div>
+            </div>
+          </div>
+          <div class="mt-8 flex gap-4">
+            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <!-- Contact Form (get in touch) -->
+        <div id="getintouch" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#8686AC]/20">
+          <h3 class="text-2xl font-bold" style="color:#0F0E47;">Send us a message</h3>
+          <p class="text-[#505081] text-sm mb-5">We’ll get back within 24h</p>
+          <form id="contactForm" action="#" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
+              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <input type="tel" id="phone" placeholder="Phone Number" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <select id="serviceInterest" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700 focus:border-[#272757]">
+                <option value="">I'm interested in...</option>
+                <option value="CCTV">CCTV Surveillance</option>
+                <option value="Graphic Design">Graphic Designing</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Other">Other / Consultation</option>
+              </select>
+            </div>
+            <div class="mb-5">
+              <textarea rows="4" id="message" placeholder="Tell us about your project requirements..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50"></textarea>
+            </div>
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+            <p class="text-xs text-center text-gray-400 mt-4">By submitting, you agree to our privacy policy.</p>
+          </form>
+          <div id="formStatus" class="mt-3 text-center text-sm font-medium hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GOOD FOOTER DESIGN ================= -->
+  <footer class="bg-[#0F0E47] text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Brand column -->
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="logo-placeholder w-10 h-10 flex items-center justify-center bg-[#8686AC]/30 rounded-lg">
+              <img src="https://placehold.co/400x400/FFFFFF/0F0E47?text=T&font=montserrat" class="w-7 h-7" alt="logo foot">
+            </div>
+            <span class="font-bold text-xl">Trionexatech</span>
+          </div>
+          <p class="text-[#b9b9d4] text-sm mt-4">Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.</p>
+        </div>
+        <!-- Services footer links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Our Services</h4>
+          <ul class="space-y-2 text-sm footer-links">
+            <li><a href="#cctv" class="hover:text-[#8686AC] transition">CCTV Surveillance</a></li>
+            <li><a href="#graphic" class="hover:text-[#8686AC] transition">Graphic Designing</a></li>
+            <li><a href="#web" class="hover:text-[#8686AC] transition">Web Development</a></li>
+            <li><a href="#" class="hover:text-[#8686AC] transition">IT Consulting</a></li>
+          </ul>
+        </div>
+        <!-- quick links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Quick Links</h4>
+          <ul class="space-y-2 text-sm footer-links">
+            <li><a href="#home" class="hover:text-[#8686AC] transition">Home</a></li>
+            <li><a href="#services-highlight" class="hover:text-[#8686AC] transition">About Services</a></li>
+            <li><a href="#contact" class="hover:text-[#8686AC] transition">Contact & Support</a></li>
+            <li><a href="#" class="hover:text-[#8686AC] transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <!-- newsletter / stay connected -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Stay Connected</h4>
+          <p class="text-sm text-[#b9b9d4] mb-3">Join our newsletter for updates.</p>
+          <div class="flex">
+            <input type="email" placeholder="Your email" class="px-3 py-2 rounded-l-md w-full text-gray-800 text-sm focus:outline-none">
+            <button class="bg-[#505081] px-4 rounded-r-md hover:bg-[#8686AC] transition"><i class="fas fa-paper-plane"></i></button>
+          </div>
+          <div class="flex gap-3 mt-5">
+            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-facebook-f text-xs"></i></a>
+            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-twitter text-xs"></i></a>
+            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-linkedin-in text-xs"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-[#505081]/40 mt-12 pt-6 text-center text-sm text-[#b9b9d4]">
+        &copy; 2025 Trionexatech Services — All Rights Reserved. Innovation meets reliability.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Additional JavaScript for mobile menu toggle, form handler, dropdown interactive -->
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Mobile services dropdown toggle inside mobile menu
+    const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+    const mobileDropdownPanel = document.getElementById('mobileDropdownPanel');
+    if (mobileServicesBtn && mobileDropdownPanel) {
+      mobileServicesBtn.addEventListener('click', () => {
+        mobileDropdownPanel.classList.toggle('hidden');
+        const icon = mobileServicesBtn.querySelector('i');
+        if(icon) icon.classList.toggle('rotate-180');
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId === "#" || targetId === "") return;
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu after clicking anchor (optional)
+          if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // Contact form simple submission simulation with validation (demo)
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    if(contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        if(!name || !email) {
+          formStatus.classList.remove('hidden');
+          formStatus.innerHTML = '<span class="text-red-600">❌ Please fill name and email.</span>';
+          formStatus.classList.remove('hidden');
+          setTimeout(() => formStatus.classList.add('hidden'), 3000);
+          return;
+        }
+        if(!email.includes('@') || !email.includes('.')) {
+          formStatus.innerHTML = '<span class="text-red-600">⚠️ Enter valid email.</span>';
+          formStatus.classList.remove('hidden');
+          setTimeout(() => formStatus.classList.add('hidden'), 3000);
+          return;
+        }
+        // success simulation
+        formStatus.classList.remove('hidden');
+        formStatus.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thank you! Team Trionexatech will contact soon.</span>';
+        contactForm.reset();
+        setTimeout(() => {
+          formStatus.classList.add('hidden');
+        }, 5000);
+      });
+    }
+
+    // optional update logo if user provides custom (demo note: you can replace 'logoUrl' with actual user logo)
+    // For demonstration the placeholder shows T logo, but you can set any real logo using developer tools or replace image src.
+    // we keep consistent placeholder with colors.
+  </script>
+</body>
+</html>
