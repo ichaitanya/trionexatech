@@ -8,14 +8,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome 6 (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <!-- Custom override for color scheme (exact colors + dropdown enhancements) -->
   <style>
     /* custom color scheme variables & overrides to blend exact palette */
     :root {
-      --primary-deep: #0F0E47;
-      --primary-mid: #272757;
-      --primary-soft: #505081;
-      --primary-light: #8686AC;
+      --primary-deep: #1B3A7A;
+      --primary-mid: #1B3A7A;
+      --primary-soft: #1B3A7A;
+      --primary-light: #F7941D;
       --white-light: #F9FAFE;
     }
     body {
@@ -56,16 +57,72 @@
       color: var(--primary-light);
       transition: 0.2s;
     }
-    .service-card {
+    /* .service-card {
       background: white;
       border-radius: 1.5rem;
       transition: all 0.3s ease;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
     }
     .service-card:hover {
+      background: #F9FAFE;
+background: radial-gradient(circle,rgba(249, 250, 254, 1) 0%, rgba(27, 58, 122, 1) 100%);
+      color: #fff;
+      transform: scale(1.1);
+      z-index: 9;
+    } */
+    .service-card {
+      background: #ffffff;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #29ABE2 0%, #1B3A7A 50%, #F7941D 100%);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+
+    .service-card:hover::before {
+      transform: translateX(0) skewX(0deg);
+    }
+
+    .service-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 30px -12px rgba(39, 39, 87, 0.2);
-      border-color: var(--primary-soft);
+      box-shadow: 0 15px 35px rgba(27, 58, 122, 0.35);
+      border-color: transparent !important;
+    }
+
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Text & icon color transitions */
+    .service-card .card-icon-wrap {
+      transition: background 0.4s ease;
+    }
+    .service-card:hover .card-icon-wrap {
+      background: rgba(255,255,255,0.2);
+    }
+    .service-card .card-icon,
+    .service-card .card-title,
+    .service-card .card-desc,
+    .service-card .card-list,
+    .service-card .card-check {
+      transition: color 0.4s ease;
+    }
+    .service-card:hover .card-icon,
+    .service-card:hover .card-title,
+    .service-card:hover .card-desc,
+    .service-card:hover .card-list,
+    .service-card:hover .card-check {
+      color: #ffffff !important;
     }
     input, textarea {
       transition: all 0.2s;
@@ -82,57 +139,123 @@
       align-items: center;
       justify-content: center;
     }
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+      color: #1B3A7A;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon:nth-child(1):hover { background: #1877F2; color: white; } /* Facebook */
+    .social-icon:nth-child(2):hover { background: #1DA1F2; color: white; } /* Twitter */
+    .social-icon:nth-child(3):hover { background: #0A66C2; color: white; } /* LinkedIn */
+    .social-icon:nth-child(4):hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; } /* Instagram */
   </style>
+  <style>
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+  .footer-link {
+  color: #a0b4d6;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  display: inline-block;
+}
+.footer-link:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+.footer-social {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.footer-social:hover { transform: translateY(-3px); }
+.footer-social.fb:hover { background: #1877F2; }
+.footer-social.tw:hover { background: #1DA1F2; }
+.footer-social.li:hover { background: #0A66C2; }
+.footer-social.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+input::placeholder { color: rgba(255,255,255,0.4); }
+</style>
 </head>
 <body class="antialiased">
 
   <!-- ================= NAVIGATION BAR ================= -->
-  <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#8686AC]/30">
+    <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       <div class="flex justify-between items-center h-16 md:h-20">
-        <!-- Logo Area (user can replace actual logo) -->
-         <div class="flex items-center">
-          <div class="w-48 h-12 md:w-56 md:h-20 flex items-center justify-center">
-            <img id="companyLogo" src="/logo.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+        <!-- Logo Area -->
+        <a href="index.html" class="flex items-center -gap-1">
+          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+            <img id="companyLogo" src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
           </div>
-        </div>
+          <div class="-ml-3">
+            <span class="font-black text-xl md:text-2xl tracking-widest block" 
+              style="color: #1B3A7A; font-family: 'Exo 2', sans-serif; letter-spacing: 0.12em;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
+              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+      </a>
         
 
         <!-- Desktop Menu + Dropdown (hidden on mobile) -->
         <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-          <a href="#home" class="font-medium transition hover:border-b-2 border-[#272757]" style="color:#272757;">Home</a>
+          <a href="#home" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Home</a>
           
           <!-- Services Dropdown (desktop) -->
           <div class="relative group">
-            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#272757;">
+            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#1B3A7A;">
               Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
             <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
-              <a href="#cctv" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-video text-[#505081] w-5"></i>CCTV Surveillance</a>
-              <a href="#graphic" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-palette text-[#505081] w-5"></i>Graphic Designing</a>
-              <a href="#web" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#272757]"><i class="fas fa-code text-[#505081] w-5"></i>Web Development</a>
+              <a href="#cctv" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
+              <a href="#graphic" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
+              <a href="#web" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
             </div>
           </div>
           
-          <a href="#contact" class="font-medium transition hover:border-b-2 border-[#272757]" style="color:#272757;">Contact</a>
+          <a href="#contact" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
           <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
         </div>
         
         <!-- Mobile menu button -->
         <div class="md:hidden">
-          <button id="mobileMenuBtn" class="focus:outline-none text-[#272757] text-2xl">
+          <button id="mobileMenuBtn" class="focus:outline-none text-[#1B3A7A] text-2xl">
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
       
       <!-- Mobile Dropdown Menu (hidden by default) -->
-      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#8686AC]/30 pb-4 px-2">
+      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#1B3A7A]/30 pb-4 px-2">
         <div class="flex flex-col space-y-3 mt-3">
-          <a href="#home" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">Home</a>
+          <a href="#home" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
           <!-- mobile services with sub (collapsible) -->
           <div x-data="{ open: false }" id="mobileServices">
-            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">
+            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">
               Services <i class="fas fa-chevron-down text-xs"></i>
             </button>
             <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
@@ -141,7 +264,7 @@
               <a href="#web" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
             </div>
           </div>
-          <a href="#contact" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#272757;">Contact</a>
+          <a href="#contact" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
           <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
         </div>
       </div>
@@ -149,17 +272,17 @@
   </nav>
 
   <!-- ================= HERO SECTION ================= -->
-  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-[#F9FAFE] to-[#EFEFF8]">
+  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-[#eef4ff] via-[#f0f7ff] to-[#fff4e6]">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
       <!-- Hero left content -->
       <div class="flex-1 text-center md:text-left">
-        <div class="inline-block px-4 py-1.5 rounded-full bg-[#272757]/10 text-[#272757] text-sm font-semibold mb-5 backdrop-blur-sm">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-[#1B3A7A]/10 text-[#1B3A7A] text-sm font-semibold mb-5 backdrop-blur-sm">
           <i class="fas fa-shield-alt mr-1"></i> Next-Gen Digital Solutions
         </div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight" style="color:#0F0E47;">
-          Secure & Creative <br> <span style="color:#505081;">Tech Ecosystem</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight" style="color:#1B3A7A;">
+          Secure & Creative <br> <span style="color:#486bab;">Tech Ecosystem</span>
         </h1>
-        <p class="text-lg text-gray-600 mt-6 max-w-lg mx-auto md:mx-0" style="color:#3f3d6b;">
+        <p class="text-lg text-gray-600 mt-6 max-w-lg mx-auto md:mx-0" style="color:#1B3A7A;">
           CCTV Surveillance | Graphic Designing | Web Development — Reliable, modern, and crafted for your business growth.
         </p>
         <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
@@ -167,71 +290,72 @@
           <a href="#getintouch" class="btn-outline-custom px-6 py-3 rounded-full font-semibold flex items-center gap-2">Get Free Consultation</a>
         </div>
         <!-- trust badge -->
-        <div class="flex gap-6 justify-center md:justify-start mt-12 text-sm text-[#505081]">
-          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> 100+ Projects</span>
-          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> 24/7 Support</span>
-          <span><i class="fas fa-check-circle text-[#272757] mr-1"></i> Scalable</span>
+        <div class="flex gap-6 justify-center md:justify-start mt-12 text-sm text-[#1B3A7A]">
+          <span><i class="fas fa-check-circle text-[#1B3A7A] mr-1"></i> 100+ Projects</span>
+          <span><i class="fas fa-check-circle text-[#1B3A7A] mr-1"></i> 24/7 Support</span>
+          <span><i class="fas fa-check-circle text-[#1B3A7A] mr-1"></i> Scalable</span>
         </div>
       </div>
       <!-- Hero image / graphic -->
       <div class="flex-1 flex justify-center">
-        <div class="relative w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-[#8686AC]/20 to-[#272757]/10 flex items-center justify-center shadow-2xl">
-          <div class="w-64 h-64 bg-white/60 rounded-full backdrop-blur-sm flex items-center justify-center">
-            <img src="https://placehold.co/500x500/0F0E47/FFFFFF?text=TNX&font=montserrat" alt="Trionexatech hero" class="w-48 rounded-full opacity-90">
-          </div>
-          <!-- floating icons -->
-          <i class="fas fa-camera absolute top-8 left-8 text-3xl text-[#505081] bg-white p-2 rounded-full shadow-md"></i>
-          <i class="fas fa-pen-fancy absolute bottom-10 right-6 text-3xl text-[#272757] bg-white p-2 rounded-full shadow-md"></i>
-          <i class="fas fa-laptop-code absolute top-20 right-12 text-2xl text-[#8686AC] bg-white p-2 rounded-full shadow-md"></i>
+      <div class="relative w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-[#1B3A7A]/20 to-[#1B3A7A]/10 flex items-center justify-center shadow-2xl">
+        <div class="w-64 h-64 bg-white/60 rounded-full backdrop-blur-sm flex items-center justify-center">
+          <img src="/main.png" alt="Trionexatech hero" class="w-84 rounded-full opacity-90 animate-spin-slow">
         </div>
-      </div>
-    </div>
+    <!-- floating icons -->
+    <i class="fas fa-camera absolute top-8 left-8 text-3xl text-[#1B3A7A] bg-white p-2 rounded-full shadow-md"></i>
+    <i class="fas fa-pen-fancy absolute bottom-10 right-6 text-3xl text-[#1B3A7A] bg-white p-2 rounded-full shadow-md"></i>
+    <i class="fas fa-laptop-code absolute top-20 right-12 text-2xl text-[#1B3A7A] bg-white p-2 rounded-full shadow-md"></i>
+  </div>
+</div>
   </section>
 
   <!-- ================= MIDDLE SECTION: Services We Provide ================= -->
   <section id="services-highlight" class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold" style="color:#0F0E47;">Core <span style="color:#505081;">Expertise</span></h2>
-        <div class="w-24 h-1 bg-[#272757] mx-auto mt-4 rounded-full"></div>
+        <h2 class="text-3xl md:text-4xl font-bold" style="color:#1B3A7A;">Core <span style="color:#1B3A7A;">Expertise</span></h2>
+        <div class="w-24 h-1 bg-[#1B3A7A] mx-auto mt-4 rounded-full"></div>
         <p class="text-gray-600 mt-5">We deliver high-end solutions tailored to modern business challenges.</p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- CCTV Card -->
-        <div class="service-card p-6 border border-[#8686AC]/20">
-          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
-            <i class="fas fa-video text-2xl" style="color:#272757;"></i>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-video text-2xl card-icon" style="color:#1B3A7A;"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">CCTV Surveillance</h3>
-          <p class="text-gray-600 mb-4" style="color:#3c3b64;">IP cameras, AI analytics, night vision & remote monitoring — secure your premises 24x7 with enterprise-grade systems.</p>
-          <ul class="space-y-1 text-sm text-[#505081]">
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> HD & 4K Cameras</li>
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Cloud & local storage</li>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">CCTV Surveillance</h3>
+          <p class="card-desc text-gray-600 mb-4" style="color:#1B3A7A;">IP cameras, AI analytics, night vision & remote monitoring — secure your premises 24x7 with enterprise-grade systems.</p>
+          <ul class="card-list space-y-1 text-sm text-[#1B3A7A]">
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> HD & 4K Cameras</li>
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> Cloud & local storage</li>
           </ul>
         </div>
         <!-- Graphic Designing -->
-        <div class="service-card p-6 border border-[#8686AC]/20">
-          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
-            <i class="fas fa-palette text-2xl" style="color:#272757;"></i>
+        <!-- Graphic Designing -->
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-palette text-2xl card-icon" style="color:#1B3A7A;"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">Graphic Designing</h3>
-          <p class="text-gray-600 mb-4">Modern branding, logos, social media creatives, UI/UX design that communicates your brand voice visually.</p>
-          <ul class="space-y-1 text-sm text-[#505081]">
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Logo & Brand Identity</li>
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Print & Digital Assets</li>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Graphic Designing</h3>
+          <p class="card-desc text-gray-600 mb-4">Modern branding, logos, social media creatives, UI/UX design that communicates your brand voice visually.</p>
+          <ul class="card-list space-y-1 text-sm text-[#505081]">
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> Logo & Brand Identity</li>
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> Print & Digital Assets</li>
           </ul>
         </div>
+
         <!-- Web Development -->
-        <div class="service-card p-6 border border-[#8686AC]/20">
-          <div class="w-14 h-14 rounded-2xl bg-[#272757]/10 flex items-center justify-center mb-5">
-            <i class="fas fa-code text-2xl" style="color:#272757;"></i>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-code text-2xl card-icon" style="color:#1B3A7A;"></i>
           </div>
-          <h3 class="text-xl font-bold mb-2" style="color:#0F0E47;">Web Development</h3>
-          <p class="text-gray-600 mb-4">Responsive websites, eCommerce, React/Tailwind apps, CMS integration — performance-first development.</p>
-          <ul class="space-y-1 text-sm text-[#505081]">
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> Full-stack & Frontend</li>
-            <li><i class="fas fa-check-circle text-[#272757] mr-2"></i> SEO Optimized</li>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Web Development</h3>
+          <p class="card-desc text-gray-600 mb-4">Responsive websites, eCommerce, React/Tailwind apps, CMS integration — performance-first development.</p>
+          <ul class="card-list space-y-1 text-sm text-[#1B3A7A]">
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> Full-stack & Frontend</li>
+            <li><i class="fas fa-check-circle card-check text-[#1B3A7A] mr-2"></i> SEO Optimized</li>
           </ul>
         </div>
       </div>
@@ -239,13 +363,40 @@
   </section>
 
   <!-- optional quote / why us -->
-  <div class="bg-gradient-to-r from-[#0F0E47] to-[#272757] text-white py-12">
-    <div class="max-w-6xl mx-auto px-5 text-center">
-      <i class="fas fa-quote-left text-3xl text-[#8686AC] mb-4"></i>
-      <p class="text-lg md:text-xl italic font-light">Trionexatech bridges next-gen surveillance, stunning design, and robust web development — all under one roof.</p>
-    </div>
-  </div>
+  <!-- Quote / Why Us -->
+  <div class="py-14 relative overflow-hidden" style="background: linear-gradient(135deg, #f0f4ff 0%, #6e95ff 100%);">
+  
+  <!-- Subtle side accent lines -->
+  <div class="absolute left-0 top-0 h-full w-1" style="background: linear-gradient(to bottom, transparent, #29ABE2, transparent);"></div>
+  <div class="absolute right-0 top-0 h-full w-1" style="background: linear-gradient(to bottom, transparent, #1B3A7A, transparent);"></div>
 
+  <div class="max-w-4xl mx-auto px-5 text-center relative z-10">
+
+    <!-- Top divider -->
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="h-px w-20" style="background: linear-gradient(to right, transparent, #29ABE2);"></div>
+      <i class="fas fa-shield-alt text-sm" style="color:#29ABE2;"></i>
+      <div class="h-px w-20" style="background: linear-gradient(to left, transparent, #29ABE2);"></div>
+    </div>
+
+    <!-- Quote -->
+    <p class="text-xl md:text-2xl font-semibold leading-relaxed" style="color:#1B3A7A;">
+      Trionexatech bridges 
+      <span style="color:#29ABE2; border-bottom: 2px solid #F7941D;">next-gen surveillance</span>, 
+      <span style="color:#29ABE2; border-bottom: 2px solid #F7941D;">stunning design</span>, and 
+      <span style="color:#29ABE2; border-bottom: 2px solid #F7941D;">robust web development</span> 
+      — all under one roof.
+    </p>
+
+    <!-- Bottom divider -->
+    <div class="flex items-center justify-center gap-3 mt-6">
+      <div class="h-px w-20" style="background: linear-gradient(to right, transparent, #1B3A7A);"></div>
+      <i class="fas fa-circle text-xs" style="color:#F7941D;"></i>
+      <div class="h-px w-20" style="background: linear-gradient(to left, transparent, #1B3A7A);"></div>
+    </div>
+
+  </div>
+</div>
   <!-- ================= CONTACT INFO + FORM (GET IN TOUCH) ================= -->
   <section id="contact" class="py-16 md:py-24 bg-[#F2F3FB]">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
@@ -253,43 +404,43 @@
         <!-- left side contact info -->
         <div>
           <span class="text-[#505081] font-semibold uppercase tracking-wider text-sm">Get in touch</span>
-          <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#0F0E47;">Let’s discuss <br> your project</h2>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Let’s discuss <br> your project</h2>
           <div class="mt-6 space-y-5">
             <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-phone-alt text-[#272757]"></i></div>
-              <div><p class="font-medium">+91 98765 43210</p><p class="text-sm text-gray-500">Mon-Fri 9am-6pm</p></div>
+              <div class="w-10 h-10 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center"><i class="fas fa-phone-alt text-[#1B3A7A]"></i></div>
+              <div><p class="font-medium">+91 90968 28221</p><p class="text-sm text-gray-500">Mon-Fri 9am-6pm</p></div>
             </div>
             <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-envelope text-[#272757]"></i></div>
-              <div><p class="font-medium">hello@trionexatech.com</p><p class="text-sm text-gray-500">support@trionexatech.com</p></div>
+              <div class="w-10 h-10 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center"><i class="fas fa-envelope text-[#1B3A7A]"></i></div>
+              <div><p class="font-medium">shashankvt21@gmail.com</p><p class="text-sm text-gray-500">vikastribhuwan@gmail.com</p></div>
             </div>
             <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-[#272757]/10 flex items-center justify-center"><i class="fas fa-map-marker-alt text-[#272757]"></i></div>
-              <div><p class="font-medium">Innovation Hub, Tech Park, Bangalore - 560001</p></div>
+              <div class="w-10 h-10 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center"><i class="fas fa-map-marker-alt text-[#1B3A7A]"></i></div>
+              <div><p class="font-medium">09, Shiv Kutir Apt., Belavali, Badlapur West, Maharashtra, 421503</p></div>
             </div>
           </div>
           <div class="mt-8 flex gap-4">
-            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="text-[#272757] bg-white p-2 rounded-full shadow-sm hover:shadow-md transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
         
         <!-- Contact Form (get in touch) -->
-        <div id="getintouch" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#8686AC]/20">
-          <h3 class="text-2xl font-bold" style="color:#0F0E47;">Send us a message</h3>
-          <p class="text-[#505081] text-sm mb-5">We’ll get back within 24h</p>
+        <div id="getintouch" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#1B3A7A]/20">
+          <h3 class="text-2xl font-bold" style="color:#1B3A7A;">Send us a message</h3>
+          <p class="text-[#00000] text-sm mb-5">We’ll get back within 24h</p>
           <form id="contactForm" action="#" method="POST">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
-              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
+              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
             </div>
             <div class="mb-4">
-              <input type="tel" id="phone" placeholder="Phone Number" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50">
+              <input type="tel" id="phone" placeholder="Phone Number" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
             </div>
             <div class="mb-4">
-              <select id="serviceInterest" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700 focus:border-[#272757]">
+              <select id="serviceInterest" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700 focus:border-[#1B3A7A]">
                 <option value="">I'm interested in...</option>
                 <option value="CCTV">CCTV Surveillance</option>
                 <option value="Graphic Design">Graphic Designing</option>
@@ -298,7 +449,7 @@
               </select>
             </div>
             <div class="mb-5">
-              <textarea rows="4" id="message" placeholder="Tell us about your project requirements..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#272757] bg-gray-50"></textarea>
+              <textarea rows="4" id="message" placeholder="Tell us about your project requirements..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
             </div>
             <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
             <p class="text-xs text-center text-gray-400 mt-4">By submitting, you agree to our privacy policy.</p>
@@ -310,59 +461,108 @@
   </section>
 
   <!-- ================= GOOD FOOTER DESIGN ================= -->
-  <footer class="bg-[#0F0E47] text-white pt-16 pb-8">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <!-- Brand column -->
-        <div>
-          <div class="flex items-center gap-2">
-            <div class="logo-placeholder w-10 h-10 flex items-center justify-center bg-[#8686AC]/30 rounded-lg">
-              <img src="https://placehold.co/400x400/FFFFFF/0F0E47?text=T&font=montserrat" class="w-7 h-7" alt="logo foot">
-            </div>
-            <span class="font-bold text-xl">Trionexatech</span>
+ <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center -gap-1 mb-5">
+          <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+            <img src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
           </div>
-          <p class="text-[#b9b9d4] text-sm mt-4">Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.</p>
-        </div>
-        <!-- Services footer links -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Our Services</h4>
-          <ul class="space-y-2 text-sm footer-links">
-            <li><a href="#cctv" class="hover:text-[#8686AC] transition">CCTV Surveillance</a></li>
-            <li><a href="#graphic" class="hover:text-[#8686AC] transition">Graphic Designing</a></li>
-            <li><a href="#web" class="hover:text-[#8686AC] transition">Web Development</a></li>
-            <li><a href="#" class="hover:text-[#8686AC] transition">IT Consulting</a></li>
-          </ul>
-        </div>
-        <!-- quick links -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Quick Links</h4>
-          <ul class="space-y-2 text-sm footer-links">
-            <li><a href="#home" class="hover:text-[#8686AC] transition">Home</a></li>
-            <li><a href="#services-highlight" class="hover:text-[#8686AC] transition">About Services</a></li>
-            <li><a href="#contact" class="hover:text-[#8686AC] transition">Contact & Support</a></li>
-            <li><a href="#" class="hover:text-[#8686AC] transition">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <!-- newsletter / stay connected -->
-        <div>
-          <h4 class="text-lg font-semibold mb-4 border-l-3 border-[#8686AC] pl-2">Stay Connected</h4>
-          <p class="text-sm text-[#b9b9d4] mb-3">Join our newsletter for updates.</p>
-          <div class="flex">
-            <input type="email" placeholder="Your email" class="px-3 py-2 rounded-l-md w-full text-gray-800 text-sm focus:outline-none">
-            <button class="bg-[#505081] px-4 rounded-r-md hover:bg-[#8686AC] transition"><i class="fas fa-paper-plane"></i></button>
+          <div class="-ml-2">
+            <span class="font-black text-lg tracking-widest block"
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs block -mt-1 tracking-widest"
+              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
           </div>
-          <div class="flex gap-3 mt-5">
-            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-facebook-f text-xs"></i></a>
-            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-twitter text-xs"></i></a>
-            <a href="#" class="text-white bg-[#272757] p-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#8686AC]"><i class="fab fa-linkedin-in text-xs"></i></a>
-          </div>
+        </a>
+
+        <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
+          Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
+          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
+          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
         </div>
       </div>
-      <div class="border-t border-[#505081]/40 mt-12 pt-6 text-center text-sm text-[#b9b9d4]">
-        &copy; 2025 Trionexatech Services — All Rights Reserved. Innovation meets reliability.
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          OUR SERVICES
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="#cctv" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
+          <li><a href="#graphic" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
+          <li><a href="#web" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
+        </ul>
       </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>
+          QUICK LINKS
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="#home" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
+          <li><a href="#about" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
+          <li><a href="#contact" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          STAY CONNECTED
+        </h4>
+        <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
+        <div class="flex rounded-lg overflow-hidden border border-white/10">
+          <input type="email" placeholder="Your email address"
+            class="px-3 py-2 w-full text-sm focus:outline-none"
+            style="background:#ffffff10; color:white; placeholder-color:white;">
+          <button class="px-4 py-2 flex-shrink-0 transition-all duration-300"
+            style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Contact info -->
+        <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>info@trionexatech.com</p>
+          <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 00000 00000</p>
+          <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Mumbai, India</p>
+        </div>
+      </div>
+
     </div>
-  </footer>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
+      <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
+      <p>Designed with <i class="fas fa-heart text-xs" style="color:#F7941D;"></i> in India</p>
+    </div>
+  </div>
+</footer>
 
   <!-- Additional JavaScript for mobile menu toggle, form handler, dropdown interactive -->
   <script>
