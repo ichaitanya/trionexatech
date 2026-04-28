@@ -210,8 +210,8 @@
 </head>
 <body class="antialiased">
 
-  <!-- ================= NAVIGATION BAR (same as index) ================= -->
-  <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
+ <!-- ================= NAVIGATION BAR ================= -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       <div class="flex justify-between items-center h-16 md:h-20">
         <!-- Logo Area -->
@@ -229,9 +229,10 @@
               Secure | Create | Innovate
             </span>
           </div>
-        </a>
+      </a>
+        
 
-        <!-- Desktop Menu + Dropdown -->
+        <!-- Desktop Menu + Dropdown (hidden on mobile) -->
         <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
           <a href="/index.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Home</a>
           <a href="/about.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">About us</a>
@@ -242,13 +243,13 @@
               Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
             </button>
             <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
-              <a href="#cctv" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
-              <a href="#graphic" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
-              <a href="#web" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
+              <a href="/cctv.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
             </div>
           </div>
           
-          <a href="#contact" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
+          <a href="/contact.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
           <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
         </div>
         
@@ -260,23 +261,24 @@
         </div>
       </div>
       
-      <!-- Mobile Dropdown Menu -->
+      <!-- Mobile Dropdown Menu (hidden by default) -->
       <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#1B3A7A]/30 pb-4 px-2">
         <div class="flex flex-col space-y-3 mt-3">
-          <a href="index.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
+          <a href="/index.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
           <a href="/about.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">About us</a>
-          <div id="mobileServices">
+          <!-- mobile services with sub (collapsible) -->
+          <div x-data="{ open: false }" id="mobileServices">
             <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">
               Services <i class="fas fa-chevron-down text-xs"></i>
             </button>
             <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
-              <a href="index.html#cctv" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
-              <a href="index.html#graphic" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
-              <a href="index.html#web" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
+              <a href="/cctv.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
             </div>
           </div>
-          <a href="index.html#contact" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
-          <a href="index.html#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
+          <a href="/contact.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
         </div>
       </div>
     </div>
@@ -486,72 +488,108 @@
   </div>
 
   <!-- ================= FOOTER (identical to index) ================= -->
-  <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <!-- Brand column -->
-        <div class="lg:col-span-1">
-          <a href="index.html" class="flex items-center -gap-1 mb-5">
-            <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
-              <img src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
-            </div>
-            <div class="-ml-2">
-              <span class="font-black text-lg tracking-widest block" style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">TRIONEXATECH</span>
-              <span class="text-xs block -mt-1 tracking-widest" style="color: #29ABE2;">Secure | Create | Innovate</span>
-            </div>
-          </a>
-          <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
-            Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
-          </p>
-          <div class="flex gap-3">
-            <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
-            <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
-            <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
-            <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
-          </div>
-        </div>
+ <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-        <div>
-          <h4 class="text-base font-bold mb-5 flex items-center gap-2"><span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>OUR SERVICES</h4>
-          <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
-            <li><a href="index.html#cctv" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
-            <li><a href="index.html#graphic" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
-            <li><a href="index.html#web" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-base font-bold mb-5 flex items-center gap-2"><span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>QUICK LINKS</h4>
-          <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
-            <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
-            <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
-            <li><a href="index.html#contact" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-base font-bold mb-5 flex items-center gap-2"><span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>STAY CONNECTED</h4>
-          <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
-          <div class="flex rounded-lg overflow-hidden border border-white/10">
-            <input type="email" placeholder="Your email address" class="px-3 py-2 w-full text-sm focus:outline-none" style="background:#ffffff10; color:white;">
-            <button class="px-4 py-2 flex-shrink-0 transition-all duration-300" style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);"><i class="fas fa-paper-plane text-sm"></i></button>
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center -gap-1 mb-5">
+          <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+            <img src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
           </div>
-          <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
-            <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
-            <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
-            <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
+          <div class="-ml-2">
+            <span class="font-black text-lg tracking-widest block"
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs block -mt-1 tracking-widest"
+              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
           </div>
+        </a>
+
+        <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
+          Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
+          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
+          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
         </div>
       </div>
 
-      <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm" style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
-        <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
-        <p>Designed with <i class="fas fa-heart text-xs" style="color:#F7941D;"></i> in India</p>
+      <!-- Services -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          OUR SERVICES
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
+          <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
+          <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
+        </ul>
       </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>
+          QUICK LINKS
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/index.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
+          <li><a href="/about.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
+          <li><a href="/contact.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          STAY CONNECTED
+        </h4>
+        <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
+        <div class="flex rounded-lg overflow-hidden border border-white/10">
+          <input type="email" placeholder="Your email address"
+            class="px-3 py-2 w-full text-sm focus:outline-none"
+            style="background:#ffffff10; color:white; placeholder-color:white;">
+          <button class="px-4 py-2 flex-shrink-0 transition-all duration-300"
+            style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Contact info -->
+        <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
+          <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
+        </div>
+      </div>
+
     </div>
-  </footer>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
+      <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
+      <p>Designed by <span style="color:#9879f4; font-weight:600;">Talecat</span></p>
+    </div>
+  </div>
+</footer>
 
   <!-- Scripts for mobile menu + smooth counter animation -->
   <script>
