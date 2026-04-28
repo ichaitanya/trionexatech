@@ -241,6 +241,92 @@
     .service-card:hover .card-icon-wrap {
       background: rgba(255,255,255,0.2) !important;
     }
+    /* List item hover */
+  .infra-item {
+    border: 1px solid transparent;
+  }
+  .infra-item:hover {
+    background: rgba(27,58,122,0.04);
+    border-color: rgba(27,58,122,0.1);
+    transform: translateX(4px);
+  }
+
+  /* Badges */
+  .infra-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(27,58,122,0.08);
+    color: #1B3A7A;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(27,58,122,0.15);
+    transition: all 0.3s ease;
+  }
+  .infra-badge:hover {
+    background: #1B3A7A;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27,58,122,0.2);
+  }
+    .surv-card {
+    background: white;
+    border: 1px solid rgba(27,58,122,0.1);
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  /* Top accent bar slides in */
+  .surv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #29ABE2, #1B3A7A, #F7941D);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .surv-card:hover::before { transform: scaleX(1); }
+
+  .surv-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(27,58,122,0.12);
+    border-color: rgba(27,58,122,0.2);
+  }
+
+  /* Icon circle */
+  .surv-icon-wrap {
+    transition: all 0.4s ease;
+  }
+  .surv-card:hover .surv-icon-wrap {
+    background: linear-gradient(135deg, #1B3A7A, #29ABE2);
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(27,58,122,0.25);
+  }
+  .surv-card:hover .surv-icon {
+    color: #ffffff !important;
+  }
+
+  /* Title & desc */
+  .surv-title { transition: color 0.3s ease; }
+  .surv-card:hover .surv-title { color: #1B3A7A; }
+  .surv-desc { transition: color 0.3s ease; }
+  .surv-card:hover .surv-desc { color: #505081; }
+
+  /* Bottom growing line */
+  .surv-line {
+    height: 2px;
+    background: linear-gradient(90deg, #29ABE2, #F7941D);
+    border-radius: 2px;
+    width: 0;
+    margin: 16px auto 0;
+    transition: width 0.4s ease;
+  }
+  .surv-card:hover .surv-line { width: 50%; }
     .feature-icon {
       transition: transform 0.3s;
     }
@@ -441,7 +527,7 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <span class="text-[#29ABE2] font-semibold uppercase tracking-wider">Why choose our surveillance</span>
-        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Intelligent <span class="border-b-4 border-[#F7941D]">Security Ecosystem</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Intelligent<span class="border-b-4 border-[#F7941D]"> Security Ecosystem</span></h2>
         <div class="w-20 h-0.5 bg-[#1B3A7A] mx-auto mt-4"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -472,62 +558,132 @@
 
   <!-- ============= SOLUTION TYPES (different applications) ============= -->
   <section class="py-16 bg-[#F8FAFE]">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold" style="color:#1B3A7A;">Tailored <span style="color:#29ABE2;">Surveillance Solutions</span></h2>
-        <p class="text-gray-600 mt-3">Industry-specific deployments for maximum coverage and efficiency.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-xl p-5 text-center shadow-sm border border-[#1B3A7A]/10 feature-card transition-all hover:shadow-lg">
-          <div class="feature-icon w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-3"><i class="fas fa-building text-2xl" style="color:#1B3A7A;"></i></div>
-          <h3 class="font-bold text-lg">Corporate Offices</h3>
-          <p class="text-sm text-gray-500">Access control integration, lobby & floor monitoring.</p>
-        </div>
-        <div class="bg-white rounded-xl p-5 text-center shadow-sm border border-[#1B3A7A]/10 feature-card transition-all hover:shadow-lg">
-          <div class="feature-icon w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-3"><i class="fas fa-store text-2xl" style="color:#1B3A7A;"></i></div>
-          <h3 class="font-bold text-lg">Retail Stores</h3>
-          <p class="text-sm text-gray-500">POS integration, theft prevention, customer analytics.</p>
-        </div>
-        <div class="bg-white rounded-xl p-5 text-center shadow-sm border border-[#1B3A7A]/10 feature-card transition-all hover:shadow-lg">
-          <div class="feature-icon w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-3"><i class="fas fa-home text-2xl" style="color:#1B3A7A;"></i></div>
-          <h3 class="font-bold text-lg">Residential</h3>
-          <p class="text-sm text-gray-500">Villa, apartment, gated community security with intercom.</p>
-        </div>
-        <div class="bg-white rounded-xl p-5 text-center shadow-sm border border-[#1B3A7A]/10 feature-card transition-all hover:shadow-lg">
-          <div class="feature-icon w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-3"><i class="fas fa-industry text-2xl" style="color:#1B3A7A;"></i></div>
-          <h3 class="font-bold text-lg">Industrial Sites</h3>
-          <p class="text-sm text-gray-500">Weatherproof cameras, explosion-proof housings, 24/7 monitoring.</p>
-        </div>
-      </div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold" style="color:#1B3A7A;">Tailored <span style="color:#29ABE2;">Surveillance Solutions</span></h2>
+      <p class="text-gray-600 mt-3">Industry-specific deployments for maximum coverage and efficiency.</p>
     </div>
-  </section>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Corporate Offices -->
+      <div class="surv-card p-6 text-center">
+        <div class="surv-icon-wrap w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-4">
+          <i class="fas fa-building text-2xl surv-icon" style="color:#1B3A7A;"></i>
+        </div>
+        <h3 class="surv-title font-bold text-lg mb-2">Corporate Offices</h3>
+        <p class="surv-desc text-sm text-gray-500">Access control integration, lobby & floor monitoring.</p>
+        <div class="surv-line"></div>
+      </div>
+
+      <!-- Retail Stores -->
+      <div class="surv-card p-6 text-center">
+        <div class="surv-icon-wrap w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-4">
+          <i class="fas fa-store text-2xl surv-icon" style="color:#1B3A7A;"></i>
+        </div>
+        <h3 class="surv-title font-bold text-lg mb-2">Retail Stores</h3>
+        <p class="surv-desc text-sm text-gray-500">POS integration, theft prevention, customer analytics.</p>
+        <div class="surv-line"></div>
+      </div>
+
+      <!-- Residential -->
+      <div class="surv-card p-6 text-center">
+        <div class="surv-icon-wrap w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-4">
+          <i class="fas fa-home text-2xl surv-icon" style="color:#1B3A7A;"></i>
+        </div>
+        <h3 class="surv-title font-bold text-lg mb-2">Residential</h3>
+        <p class="surv-desc text-sm text-gray-500">Villa, apartment, gated community security with intercom.</p>
+        <div class="surv-line"></div>
+      </div>
+
+      <!-- Industrial Sites -->
+      <div class="surv-card p-6 text-center">
+        <div class="surv-icon-wrap w-16 h-16 mx-auto rounded-full bg-[#1B3A7A]/10 flex items-center justify-center mb-4">
+          <i class="fas fa-industry text-2xl surv-icon" style="color:#1B3A7A;"></i>
+        </div>
+        <h3 class="surv-title font-bold text-lg mb-2">Industrial Sites</h3>
+        <p class="surv-desc text-sm text-gray-500">Weatherproof cameras, explosion-proof housings, 24/7 monitoring.</p>
+        <div class="surv-line"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <!-- ============= TECHNOLOGY + COMPONENTS SHOWCASE ============= -->
   <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <span class="text-[#F7941D] font-semibold uppercase tracking-wider">Advanced hardware</span>
-          <h2 class="text-3xl font-bold mt-2" style="color:#1B3A7A;">End-to-End <span class="border-b-4 border-[#29ABE2]">Security Infrastructure</span></h2>
-          <ul class="mt-6 space-y-4">
-            <li class="flex gap-3"><i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5"></i><div><strong class="block">IP & Analog Cameras</strong> <span class="text-gray-600 text-sm">Bullet, dome, PTZ, fisheye, thermal – choose according to coverage needs.</span></div></li>
-            <li class="flex gap-3"><i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5"></i><div><strong class="block">NVR / DVR Recorders</strong> <span class="text-gray-600 text-sm">High-capacity storage with RAID and remote playback.</span></div></li>
-            <li class="flex gap-3"><i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5"></i><div><strong class="block">Mobile & Web Access</strong> <span class="text-gray-600 text-sm">Real-time alerts, push notifications, two-way audio.</span></div></li>
-            <li class="flex gap-3"><i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5"></i><div><strong class="block">Annual Maintenance</strong> <span class="text-gray-600 text-sm">24x7 support, on-site repair, firmware updates.</span></div></li>
-          </ul>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <span class="bg-[#1B3A7A]/10 px-3 py-1 rounded-full text-xs font-semibold">CyberSecure</span>
-            <span class="bg-[#1B3A7A]/10 px-3 py-1 rounded-full text-xs font-semibold">NDAA Compliant</span>
-            <span class="bg-[#1B3A7A]/10 px-3 py-1 rounded-full text-xs font-semibold">5-Year Warranty</span>
-          </div>
-        </div>
-        <div class="relative rounded-2xl overflow-hidden shadow-xl">
-          <img src="https://placehold.co/800x500/1B3A7A/FFFFFF?text=CCTV+Installation+Setup&font=montserrat" alt="CCTV system" class="w-full h-auto">
-          <div class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md"><i class="fas fa-video text-[#1B3A7A] text-xl"></i></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Content -->
+      <div>
+        <span class="text-[#F7941D] font-semibold uppercase tracking-wider text-sm">Advanced Hardware</span>
+        <h2 class="text-3xl font-bold mt-2" style="color:#1B3A7A;">
+          End-to-End
+          <span style="border-bottom: 4px solid #29ABE2; padding-bottom: 3px;">Security Infrastructure</span>
+        </h2>
+
+        <ul class="mt-6 space-y-4">
+          <li class="infra-item flex gap-3 p-3 rounded-xl transition-all duration-300">
+            <i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5 flex-shrink-0"></i>
+            <div>
+              <strong class="block" style="color:#1B3A7A;">IP & Analog Cameras</strong>
+              <span class="text-gray-500 text-sm">Bullet, dome, PTZ, fisheye, thermal – choose according to coverage needs.</span>
+            </div>
+          </li>
+          <li class="infra-item flex gap-3 p-3 rounded-xl transition-all duration-300">
+            <i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5 flex-shrink-0"></i>
+            <div>
+              <strong class="block" style="color:#1B3A7A;">NVR / DVR Recorders</strong>
+              <span class="text-gray-500 text-sm">High-capacity storage with RAID and remote playback.</span>
+            </div>
+          </li>
+          <li class="infra-item flex gap-3 p-3 rounded-xl transition-all duration-300">
+            <i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5 flex-shrink-0"></i>
+            <div>
+              <strong class="block" style="color:#1B3A7A;">Mobile & Web Access</strong>
+              <span class="text-gray-500 text-sm">Real-time alerts, push notifications, two-way audio.</span>
+            </div>
+          </li>
+          <li class="infra-item flex gap-3 p-3 rounded-xl transition-all duration-300">
+            <i class="fas fa-check-circle text-[#29ABE2] text-xl mt-0.5 flex-shrink-0"></i>
+            <div>
+              <strong class="block" style="color:#1B3A7A;">Annual Maintenance</strong>
+              <span class="text-gray-500 text-sm">24x7 support, on-site repair, firmware updates.</span>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Badges -->
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="infra-badge"><i class="fas fa-lock text-xs mr-1"></i>CyberSecure</span>
+          <span class="infra-badge"><i class="fas fa-certificate text-xs mr-1"></i>NDAA Compliant</span>
+          <span class="infra-badge"><i class="fas fa-star text-xs mr-1"></i>5-Year Warranty</span>
         </div>
       </div>
+
+      <!-- Right Image -->
+      <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+        <img src="https://placehold.co/800x500/1B3A7A/FFFFFF?text=CCTV+Installation+Setup&font=montserrat"
+          alt="CCTV system" class="w-full h-auto transition-transform duration-500 group-hover:scale-105">
+
+        <!-- Gradient overlay on hover -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1B3A7A]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+        <!-- Corner icon -->
+        <div class="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-md transition-all duration-300 group-hover:bg-[#1B3A7A]">
+          <i class="fas fa-video text-[#1B3A7A] text-xl group-hover:text-white transition-colors duration-300"></i>
+        </div>
+
+        <!-- Top left badge -->
+        <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block"></span>
+          <span class="text-white text-xs font-semibold tracking-wider">LIVE SYSTEM</span>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ============= REQUEST A QUOTE FORM (CCTV specific) ============= -->
   <section id="request-quote" class="py-16 md:py-20 bg-[#F2F3FB]">

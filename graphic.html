@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Graphic Designing | Trionexatech – Branding & Creative Studio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* color scheme matching the brand */
+    :root {
+      --primary-deep: #1B3A7A;
+      --primary-mid: #1B3A7A;
+      --primary-soft: #1B3A7A;
+      --primary-light: #F7941D;
+      --accent-blue: #29ABE2;
+      --white-light: #F9FAFE;
+    }
+    body {
+      background-color: var(--white-light);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+    .dropdown-menu {
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+    }
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .btn-primary {
+      background-color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-deep);
+      transform: translateY(-2px);
+    }
+    .btn-outline-custom {
+      border: 1.5px solid var(--primary-mid);
+      color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-outline-custom:hover {
+      background-color: var(--primary-mid);
+      color: white;
+    }
+    .footer-link {
+      color: #a0b4d6;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      display: inline-block;
+    }
+    .footer-link:hover {
+      color: #ffffff;
+      padding-left: 4px;
+    }
+    .footer-social {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .footer-social:hover { transform: translateY(-3px); }
+    .footer-social.fb:hover { background: #1877F2; }
+    .footer-social.tw:hover { background: #1DA1F2; }
+    .footer-social.li:hover { background: #0A66C2; }
+    .footer-social.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    
+    /* service card with gradient overlay on hover (same as CCTV page) */
+    .service-card {
+      background: #ffffff;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #29ABE2 0%, #1B3A7A 50%, #F7941D 100%);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+    .service-card:hover::before {
+      transform: translateX(0) skewX(0deg);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(27, 58, 122, 0.35);
+      border-color: transparent !important;
+    }
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card .card-icon-wrap, .service-card .card-title, .service-card .card-desc, .service-card .card-list, .service-card .card-check {
+      transition: color 0.4s ease, background 0.4s ease;
+    }
+    .service-card:hover .card-icon,
+    .service-card:hover .card-title,
+    .service-card:hover .card-desc,
+    .service-card:hover .card-list,
+    .service-card:hover .card-check {
+      color: #ffffff !important;
+    }
+    .service-card:hover .card-icon-wrap {
+      background: rgba(255,255,255,0.2) !important;
+    }
+    /* portfolio item hover */
+    .portfolio-item {
+      transition: all 0.3s ease;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.2);
+    }
+    .creative-shape {
+      animation: float 6s ease-in-out infinite;
+    }
+    /* Step hover */
+  .process-step {
+    transition: all 0.3s ease;
+    border-radius: 0.75rem;
+    padding: 8px;
+    margin-left: -8px;
+  }
+  .process-step:hover {
+    background: rgba(27,58,122,0.03);
+  }
+  .process-step:hover .step-num {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(27,58,122,0.15);
+  }
+  .step-num {
+    transition: all 0.3s ease;
+  }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+   <!-- ================= NAVIGATION BAR ================= -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <!-- Logo Area -->
+        <a href="index.html" class="flex items-center -gap-1">
+          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+            <img id="companyLogo" src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-3">
+            <span class="font-black text-xl md:text-2xl tracking-widest block" 
+              style="color: #1B3A7A; font-family: 'Exo 2', sans-serif; letter-spacing: 0.12em;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
+              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+      </a>
+        
+
+        <!-- Desktop Menu + Dropdown (hidden on mobile) -->
+        <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <a href="/index.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">About us</a>
+          
+          <!-- Services Dropdown (desktop) -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+              <a href="/cctv.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
+            </div>
+          </div>
+          
+          <a href="/contact.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileMenuBtn" class="focus:outline-none text-[#1B3A7A] text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Dropdown Menu (hidden by default) -->
+      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#1B3A7A]/30 pb-4 px-2">
+        <div class="flex flex-col space-y-3 mt-3">
+          <a href="/index.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">About us</a>
+          <!-- mobile services with sub (collapsible) -->
+          <div x-data="{ open: false }" id="mobileServices">
+            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
+              <a href="/cctv.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
+            </div>
+          </div>
+          <a href="/contact.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ================= UNIQUE CREATIVE HERO SECTION ================= -->
+  <section class="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28" style="background: radial-gradient(circle at 10% 30%, #fff9f0 0%, #eef4ff 100%);">
+    <!-- abstract floating shapes -->
+    <div class="absolute top-10 left-5 w-40 h-40 bg-[#29ABE2] rounded-full mix-blend-multiply filter blur-3xl opacity-20 creative-shape"></div>
+    <div class="absolute bottom-10 right-5 w-56 h-56 bg-[#F7941D] rounded-full mix-blend-multiply filter blur-3xl opacity-20 creative-shape" style="animation-delay: 2s;"></div>
+    
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <!-- left content -->
+        <div class="flex-1 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-1.5 text-[#1B3A7A] text-sm font-semibold mb-5 shadow-sm">
+            <i class="fas fa-magic text-[#F7941D]"></i> <span>Creative Studio</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+            <span style="color:#1B3A7A;">Design that</span><br>
+            <span class="bg-gradient-to-r from-[#29ABE2] to-[#F7941D] bg-clip-text text-transparent">Speaks Volumes</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mt-6 max-w-lg mx-auto lg:mx-0">
+            Logo design, brand identity, social media graphics, UI/UX, and print — we craft visuals that captivate and convert.
+          </p>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-8">
+            <a href="#portfolio" class="btn-primary text-white px-7 py-3 rounded-full shadow-lg font-semibold flex items-center gap-2">View Portfolio <i class="fas fa-arrow-right"></i></a>
+            <a href="#quote-form" class="btn-outline-custom px-6 py-3 rounded-full font-semibold flex items-center gap-2">Get a Custom Quote</a>
+          </div>
+          <div class="flex flex-wrap gap-5 justify-center lg:justify-start mt-10 text-sm font-medium">
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> 500+ Projects</div>
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> 50+ Happy Brands</div>
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> 48h Turnaround</div>
+          </div>
+        </div>
+        <!-- right creative visuals - a mockup with abstract design elements -->
+        <div class="flex-1 relative flex justify-center">
+          <div class="relative w-80 h-80 md:w-[400px] md:h-[400px]">
+            <!-- rotating ring effect -->
+            <div class="absolute inset-0 rounded-full border-4 border-dashed border-[#29ABE2]/40 animate-spin-slow" style="animation: spin-slow 12s linear infinite;"></div>
+            <div class="absolute inset-8 rounded-full bg-gradient-to-br from-white/90 to-white/40 backdrop-blur-sm shadow-2xl flex flex-col items-center justify-center p-5">
+              <i class="fas fa-palette text-6xl text-[#1B3A7A] mb-3"></i>
+              <div class="flex gap-3 mt-2">
+                <i class="fab fa-figma text-3xl text-[#29ABE2]"></i>
+                <i class="fab fa-adobe text-3xl text-[#F7941D]"></i>
+                <i class="fas fa-pen-fancy text-3xl text-[#1B3A7A]"></i>
+              </div>
+              <p class="text-sm font-bold mt-3 text-center">Visual Identity<br>that stands out</p>
+            </div>
+            <!-- floating design elements -->
+            <i class="fas fa-crop-alt absolute top-0 left-0 text-2xl text-[#F7941D] bg-white p-2 rounded-full shadow-md creative-shape"></i>
+            <i class="fas fa-brush absolute bottom-0 right-0 text-2xl text-[#29ABE2] bg-white p-2 rounded-full shadow-md creative-shape" style="animation-delay: 1s;"></i>
+            <i class="fas fa-layer-group absolute top-1/2 -right-6 text-2xl text-[#1B3A7A] bg-white p-2 rounded-full shadow-md"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bottom wave -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
+      <svg class="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff" opacity="0.8"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============= SERVICES / WHAT WE OFFER ============= -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-[#29ABE2] font-semibold uppercase tracking-wider">Our creative expertise</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Design Solutions<span class="border-b-4 border-[#F7941D] ml-2">for Every Need</span></h2>
+        <div class="w-20 h-0.5 bg-[#1B3A7A] mx-auto mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-trademark text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Brand Identity</h3>
+          <p class="card-desc text-gray-600 mb-4">Logo design, color palette, typography, brand guidelines — a complete visual language for your business.</p>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-chart-line text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Social Media Graphics</h3>
+          <p class="card-desc text-gray-600 mb-4">Engaging posts, stories, banners, ads — designed to boost engagement and brand recall.</p>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-laptop-code text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">UI/UX Design</h3>
+          <p class="card-desc text-gray-600 mb-4">Wireframes, prototypes, intuitive interfaces for web & mobile apps that users love.</p>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-print text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Print Design</h3>
+          <p class="card-desc text-gray-600 mb-4">Brochures, flyers, business cards, packaging — high-resolution artwork for professional printing.</p>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-video text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Motion Graphics</h3>
+          <p class="card-desc text-gray-600 mb-4">Animated logos, explainer videos, social media animations — bring your brand to life.</p>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="card-icon-wrap w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-shopping-cart text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">E-commerce Visuals</h3>
+          <p class="card-desc text-gray-600 mb-4">Product image editing, infographics, banners that drive sales and conversions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= PORTFOLIO SHOWCASE ============= -->
+  <section id="portfolio" class="py-16 bg-[#F8FAFE]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center mb-12">
+        <span class="text-[#F7941D] font-semibold uppercase tracking-wider">Recent creations</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Design<span style="color:#29ABE2;"> Portfolio</span></h2>
+        <p class="text-gray-600 mt-2">A glimpse of our creative work for diverse brands.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10">
+          <div class="h-48 bg-gradient-to-br from-[#1B3A7A] to-[#29ABE2] flex items-center justify-center">
+            <i class="fas fa-crown text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Luxury Brand Identity</h3>
+            <p class="text-sm text-gray-500">Logo suite, stationery, style guide</p>
+          </div>
+        </div>
+        <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10">
+          <div class="h-48 bg-[#F7941D] flex items-center justify-center">
+            <i class="fab fa-instagram text-6xl text-white"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Social Media Campaign</h3>
+            <p class="text-sm text-gray-500">30+ posts & stories for a fashion brand</p>
+          </div>
+        </div>
+        <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10">
+          <div class="h-48 bg-[#29ABE2] flex items-center justify-center">
+            <i class="fas fa-mobile-alt text-6xl text-white"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Fintech App UI/UX</h3>
+            <p class="text-sm text-gray-500">Complete design system & prototype</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <a href="#" class="text-[#1B3A7A] font-semibold inline-flex items-center gap-1 border-b-2 border-[#F7941D] hover:gap-2 transition-all">View full portfolio <i class="fas fa-arrow-right text-sm"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= WHY CHOOSE US / PROCESS ============= -->
+  <section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Content -->
+      <div>
+        <span class="text-[#29ABE2] font-semibold uppercase tracking-wider text-sm">Our Design Process</span>
+        <h2 class="text-3xl font-bold mt-2" style="color:#1B3A7A;">
+          From Concept to
+          <span style="border-bottom: 4px solid #F7941D; padding-bottom: 3px; margin-left: 6px;">Creation</span>
+        </h2>
+        <p class="text-gray-500 text-sm mt-3">A structured, creative flow that turns your vision into a visual identity.</p>
+
+        <!-- Steps -->
+        <div class="mt-8 space-y-0">
+
+          <div class="process-step flex gap-4 items-start">
+            <div class="step-line-wrap flex flex-col items-center">
+              <div class="step-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(27,58,122,0.1); color:#1B3A7A;">1</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #1B3A7A33, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Discovery & Brief</strong>
+              <span class="text-gray-500 text-sm">We understand your brand, audience, and goals.</span>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 items-start">
+            <div class="step-line-wrap flex flex-col items-center">
+              <div class="step-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(41,171,226,0.1); color:#29ABE2;">2</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #29ABE233, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Research & Moodboard</strong>
+              <span class="text-gray-500 text-sm">Creative direction, references, and style exploration.</span>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 items-start">
+            <div class="step-line-wrap flex flex-col items-center">
+              <div class="step-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(247,148,29,0.1); color:#F7941D;">3</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #F7941D33, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Design & Iteration</strong>
+              <span class="text-gray-500 text-sm">Multiple concepts, feedback rounds, refinement.</span>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 items-start">
+            <div class="step-line-wrap flex flex-col items-center">
+              <div class="step-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(27,58,122,0.1); color:#1B3A7A;">4</div>
+            </div>
+            <div>
+              <strong class="block text-base" style="color:#1B3A7A;">Final Delivery</strong>
+              <span class="text-gray-500 text-sm">High-res files, source assets, brand guidelines.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+        <img src="https://placehold.co/700x500/1B3A7A/FFFFFF?text=Creative+Process+Board&font=montserrat"
+          alt="design process" class="w-full h-auto transition-transform duration-500 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1B3A7A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+        <!-- Floating badge -->
+        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+          <i class="fas fa-palette text-sm" style="color:#F7941D;"></i>
+          <span class="text-xs font-semibold" style="color:#1B3A7A;">Creative Studio</span>
+        </div>
+
+        <!-- Bottom stat strip -->
+        <div class="absolute bottom-0 left-0 right-0 bg-[#1B3A7A]/80 backdrop-blur-sm px-6 py-3 flex justify-around">
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">50+</div>
+            <div class="text-white/60 text-xs">Brands Designed</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">100%</div>
+            <div class="text-white/60 text-xs">Client Satisfaction</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">48hr</div>
+            <div class="text-white/60 text-xs">First Draft</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ============= REQUEST QUOTE FORM ============= -->
+  <section id="quote-form" class="py-20 bg-[#F2F3FB]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="text-[#F7941D] font-semibold uppercase tracking-wider">Start your creative journey</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Let's bring your <br>vision to life</h2>
+          <p class="text-gray-600 mt-4">Tell us about your design needs — logo, branding, social graphics, or a complete overhaul. We'll reply within 24 hours with a custom proposal.</p>
+          <div class="mt-8 flex gap-4 flex-wrap">
+            <div class="flex items-center gap-2"><i class="fas fa-clock text-[#29ABE2]"></i> Fast turnaround</div>
+            <div class="flex items-center gap-2"><i class="fas fa-recycle text-[#29ABE2]"></i> Unlimited revisions*</div>
+            <div class="flex items-center gap-2"><i class="fas fa-lock text-[#29ABE2]"></i> 100% original work</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#1B3A7A]/20">
+          <h3 class="text-2xl font-bold" style="color:#1B3A7A;">Request a Design Quote</h3>
+          <p class="text-gray-500 text-sm mb-5">Share your project details.</p>
+          <form id="designQuoteForm" action="#" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <input type="tel" id="phone" placeholder="Phone Number*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <select id="designType" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700">
+                <option value="">What design service do you need?</option>
+                <option>Logo & Brand Identity</option>
+                <option>Social Media Graphics</option>
+                <option>UI/UX Design (Web/App)</option>
+                <option>Print Design (Brochure, Flyer, etc.)</option>
+                <option>Motion Graphics / Animation</option>
+                <option>Complete Branding Package</option>
+              </select>
+            </div>
+            <div class="mb-5">
+              <textarea rows="4" id="message" placeholder="Describe your brand, style preferences, and deliverables..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
+            </div>
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Request <i class="fas fa-paper-plane ml-2"></i></button>
+            <p class="text-xs text-center text-gray-400 mt-4">We respect your privacy. No spam.</p>
+          </form>
+          <div id="formStatus" class="mt-3 text-center text-sm font-medium hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FOOTER ============= -->
+  <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center -gap-1 mb-5">
+          <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+            <img src="/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-2">
+            <span class="font-black text-lg tracking-widest block"
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs block -mt-1 tracking-widest"
+              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+        </a>
+
+        <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
+          Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
+          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
+          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          OUR SERVICES
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
+          <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
+          <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>
+          QUICK LINKS
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/index.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
+          <li><a href="/about.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
+          <li><a href="/contact.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          STAY CONNECTED
+        </h4>
+        <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
+        <div class="flex rounded-lg overflow-hidden border border-white/10">
+          <input type="email" placeholder="Your email address"
+            class="px-3 py-2 w-full text-sm focus:outline-none"
+            style="background:#ffffff10; color:white; placeholder-color:white;">
+          <button class="px-4 py-2 flex-shrink-0 transition-all duration-300"
+            style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Contact info -->
+        <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
+          <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
+      <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
+      <p>Designed by <span style="color:#9879f4; font-weight:600;">Talecat</span></p>
+    </div>
+  </div>
+</footer>
+
+  <!-- Scripts for mobile and form -->
+  <script>
+    // mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    }
+    const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+    const mobileDropdownPanel = document.getElementById('mobileDropdownPanel');
+    if (mobileServicesBtn && mobileDropdownPanel) {
+      mobileServicesBtn.addEventListener('click', () => {
+        mobileDropdownPanel.classList.toggle('hidden');
+        const icon = mobileServicesBtn.querySelector('i');
+        if(icon) icon.classList.toggle('rotate-180');
+      });
+    }
+    // smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId === "#" || targetId === "") return;
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if(mobileMenu && !mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+    // form submission simulation
+    const form = document.getElementById('designQuoteForm');
+    const statusDiv = document.getElementById('formStatus');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const phone = document.getElementById('phone')?.value.trim();
+        if(!name || !email || !phone) {
+          statusDiv.classList.remove('hidden');
+          statusDiv.innerHTML = '<span class="text-red-600">❌ Please fill name, email, and phone.</span>';
+          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+          return;
+        }
+        if(!email.includes('@')) {
+          statusDiv.innerHTML = '<span class="text-red-600">⚠️ Valid email required.</span>';
+          statusDiv.classList.remove('hidden');
+          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+          return;
+        }
+        statusDiv.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thank you! Our design team will reach out shortly with a free consultation.</span>';
+        statusDiv.classList.remove('hidden');
+        form.reset();
+        setTimeout(() => statusDiv.classList.add('hidden'), 5000);
+      });
+    }
+    // custom spin-slow animation keyframes
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .animate-spin-slow { animation: spin-slow 12s linear infinite; }`;
+    document.head.appendChild(styleSheet);
+  </script>
+</body>
+</html>
