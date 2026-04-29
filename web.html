@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Web Development | Trionexatech – Modern Web Solutions</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* brand colors */
+    :root {
+      --primary-deep: #1B3A7A;
+      --primary-mid: #1B3A7A;
+      --accent-blue: #29ABE2;
+      --accent-orange: #F7941D;
+      --white-light: #F9FAFE;
+    }
+    body {
+      background-color: var(--white-light);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    /* dropdown & buttons */
+    .dropdown-menu {
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+    }
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .btn-primary {
+      background-color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-deep);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--primary-mid);
+      color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background-color: var(--primary-mid);
+      color: white;
+    }
+    /* footer styles */
+    .footer-link {
+      color: #a0b4d6;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      display: inline-block;
+    }
+    .footer-link:hover {
+      color: #ffffff;
+      padding-left: 4px;
+    }
+    .footer-social {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .footer-social:hover { transform: translateY(-3px); }
+    .footer-social.fb:hover { background: #1877F2; }
+    .footer-social.tw:hover { background: #1DA1F2; }
+    .footer-social.li:hover { background: #0A66C2; }
+    .footer-social.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    
+    /* service card hover effect (matching other pages) */
+    .service-card {
+      background: #ffffff;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #29ABE2 0%, #1B3A7A 50%, #F7941D 100%);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+    .service-card:hover::before {
+      transform: translateX(0) skewX(0deg);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(27, 58, 122, 0.35);
+      border-color: transparent !important;
+    }
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card .card-icon, .service-card .card-title, .service-card .card-desc, .service-card .card-list {
+      transition: color 0.4s ease;
+    }
+    .service-card:hover .card-icon,
+    .service-card:hover .card-title,
+    .service-card:hover .card-desc,
+    .service-card:hover .card-list {
+      color: #ffffff !important;
+    }
+    .service-card:hover .icon-bg {
+      background: rgba(255,255,255,0.2) !important;
+    }
+    /* creative hero animations */
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @keyframes float-reverse {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(15px) rotate(-2deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @keyframes code-ripple {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+    .float-slow {
+      animation: float 5s ease-in-out infinite;
+    }
+    .float-reverse {
+      animation: float-reverse 6s ease-in-out infinite;
+    }
+    .ripple-element {
+      animation: code-ripple 3s ease-out infinite;
+    }
+    .glow-text {
+      background: linear-gradient(135deg, #29ABE2, #F7941D);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .dev-step {
+        transition: all 0.3s ease;
+        border-radius: 0.75rem;
+        padding: 8px;
+        margin-left: -8px;
+    }
+    .dev-step:hover {
+        background: rgba(27,58,122,0.03);
+    }
+    .dev-step:hover .dev-num {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(27,58,122,0.15);
+    }
+  .dev-num {
+    transition: all 0.3s ease;
+  }
+  </style>
+</head>
+<body class="antialiased">
+
+ <!-- ================= NAVIGATION BAR ================= -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <!-- Logo Area -->
+        <a href="index.html" class="flex items-center -gap-1">
+          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+            <img id="companyLogo" src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-3">
+            <span class="font-black text-xl md:text-2xl tracking-widest block" 
+              style="color: #1B3A7A; font-family: 'Exo 2', sans-serif; letter-spacing: 0.12em;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
+              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+      </a>
+        
+
+        <!-- Desktop Menu + Dropdown (hidden on mobile) -->
+        <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <a href="/index.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">About us</a>
+          
+          <!-- Services Dropdown (desktop) -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+              <a href="/cctv.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
+            </div>
+          </div>
+          
+          <a href="/contact.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileMenuBtn" class="focus:outline-none text-[#1B3A7A] text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Dropdown Menu (hidden by default) -->
+      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#1B3A7A]/30 pb-4 px-2">
+        <div class="flex flex-col space-y-3 mt-3">
+          <a href="/index.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">About us</a>
+          <!-- mobile services with sub (collapsible) -->
+          <div x-data="{ open: false }" id="mobileServices">
+            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
+              <a href="/cctv.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
+            </div>
+          </div>
+          <a href="/contact.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== UNIQUE CREATIVE HERO SECTION ========== -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-[#eef4ff] via-[#f0f7ff] to-[#e8f0fe] py-20 md:py-28">
+    <!-- abstract tech background shapes -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-10 left-10 w-72 h-72 bg-[#29ABE2] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-[#F7941D] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+      <!-- floating code brackets -->
+      <i class="fas fa-code absolute top-20 left-[15%] text-4xl text-[#1B3A7A]/10 float-slow"></i>
+      <i class="fas fa-laptop-code absolute bottom-20 right-[20%] text-5xl text-[#29ABE2]/10 float-reverse"></i>
+      <i class="fas fa-database absolute top-1/3 right-[10%] text-3xl text-[#F7941D]/10 float-slow"></i>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <!-- left content -->
+        <div class="flex-1 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-1.5 text-[#1B3A7A] text-sm font-semibold mb-5 shadow-sm">
+            <i class="fas fa-crown text-[#F7941D]"></i> <span>Digital Craftsmanship</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+            <span style="color:#1B3A7A;">We Build</span><br>
+            <span class="glow-text">Websites That Work</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mt-6 max-w-lg mx-auto lg:mx-0">
+            Custom web applications, stunning frontends, robust backends — we turn your idea into a high-performance digital product.
+          </p>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-8">
+            <a href="#portfolio" class="btn-primary text-white px-7 py-3 rounded-full shadow-lg font-semibold flex items-center gap-2">View Work <i class="fas fa-arrow-right"></i></a>
+            <a href="#quote-form" class="btn-outline px-6 py-3 rounded-full font-semibold flex items-center gap-2">Get Free Consultation</a>
+          </div>
+          <div class="flex flex-wrap gap-5 justify-center lg:justify-start mt-10 text-sm font-medium">
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> 50+ Websites Launched</div>
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> React | Laravel | Node.js</div>
+            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#29ABE2]"></i> 100% Responsive</div>
+          </div>
+        </div>
+        <!-- right creative visual: animated code editor mockup -->
+        <div class="flex-1 relative flex justify-center">
+          <div class="relative w-80 h-80 md:w-[420px] md:h-[420px]">
+            <!-- outer rotating ring -->
+            <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#29ABE2]/40 rotate-slow"></div>
+            <!-- inner floating window -->
+            <div class="absolute inset-8 bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-gray-200 float-slow">
+              <div class="bg-[#1B3A7A] px-3 py-2 flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                <span class="text-white text-[10px] ml-2 opacity-70">index.html</span>
+              </div>
+              <div class="p-4 font-mono text-xs md:text-sm">
+                <p class="text-[#1B3A7A]"><span class="text-[#29ABE2]">&lt;div</span> <span class="text-[#F7941D]">class=</span><span class="text-green-600">"hero"</span><span class="text-[#29ABE2]">&gt;</span></p>
+                <p class="text-[#1B3A7A] ml-3"><span class="text-[#29ABE2]">&lt;h1&gt;</span>Secure & Creative<span class="text-[#29ABE2]">&lt;/h1&gt;</span></p>
+                <p class="text-[#1B3A7A] ml-3"><span class="text-[#29ABE2]">&lt;p&gt;</span>Modern web solutions<span class="text-[#29ABE2]">&lt;/p&gt;</span></p>
+                <p class="text-[#1B3A7A]"><span class="text-[#29ABE2]">&lt;/div&gt;</span></p>
+                <div class="mt-2 h-0.5 bg-gray-200 w-full"></div>
+                <p class="text-[#1B3A7A] mt-2"><span class="text-[#29ABE2]">.hero</span> { <span class="text-[#F7941D]">display</span>: flex; }</p>
+                <p class="text-[#1B3A7A]"><span class="text-[#29ABE2]">@media</span> (max-width: 768px) { ... }</p>
+              </div>
+              <!-- blinking cursor effect -->
+              <div class="absolute bottom-3 right-3 w-2 h-4 bg-[#29ABE2] animate-pulse"></div>
+            </div>
+            <!-- floating tech icons -->
+            <i class="fab fa-react absolute -top-5 -left-5 text-4xl text-[#29ABE2] bg-white p-2 rounded-full shadow-md float-slow"></i>
+            <i class="fab fa-js absolute -bottom-5 -right-5 text-4xl text-[#F7941D] bg-white p-2 rounded-full shadow-md float-reverse"></i>
+            <i class="fab fa-node-js absolute top-1/2 -right-8 text-3xl text-green-600 bg-white p-2 rounded-full shadow-md float-slow"></i>
+            <i class="fab fa-tailwind absolute bottom-1/3 -left-6 text-3xl text-[#29ABE2] bg-white p-2 rounded-full shadow-md float-reverse"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bottom wave -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
+      <svg class="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff" opacity="0.9"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES / TECH STACK ========== -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-[#29ABE2] font-semibold uppercase tracking-wider">What we build</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Full-Stack<span class="border-b-4 border-[#F7941D] ml-2">Development</span></h2>
+        <div class="w-20 h-0.5 bg-[#1B3A7A] mx-auto mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="icon-bg w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-desktop text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Frontend Development</h3>
+          <p class="card-desc text-gray-600 mb-3">React, Vue, Tailwind, HTML/CSS — responsive, interactive, and lightning-fast UIs.</p>
+          <ul class="card-list text-sm text-gray-600 space-y-1">
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>SPA & PWA</li>
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>Mobile-first design</li>
+          </ul>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="icon-bg w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-server text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">Backend & APIs</h3>
+          <p class="card-desc text-gray-600 mb-3">Node.js, Laravel, Python/Django — scalable APIs, authentication, database integration.</p>
+          <ul class="card-list text-sm text-gray-600 space-y-1">
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>RESTful & GraphQL</li>
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>Secure & optimized</li>
+          </ul>
+        </div>
+        <div class="service-card p-6 border border-[#1B3A7A]/20">
+          <div class="icon-bg w-14 h-14 rounded-2xl bg-[#1B3A7A]/10 flex items-center justify-center mb-5">
+            <i class="fas fa-cart-shopping text-2xl card-icon" style="color:#1B3A7A;"></i>
+          </div>
+          <h3 class="card-title text-xl font-bold mb-2" style="color:#1B3A7A;">E‑commerce & CMS</h3>
+          <p class="card-desc text-gray-600 mb-3">Shopify, WooCommerce, custom solutions — powerful online stores and content management.</p>
+          <ul class="card-list text-sm text-gray-600 space-y-1">
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>Payment gateways</li>
+            <li><i class="fas fa-check-circle text-[#29ABE2] mr-2"></i>SEO optimized</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PORTFOLIO SHOWCASE ========== -->
+  <section id="portfolio" class="py-16 bg-[#F8FAFE]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center mb-12">
+        <span class="text-[#F7941D] font-semibold uppercase tracking-wider">Recent projects</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Websites<span style="color:#29ABE2;"> We've Built</span></h2>
+        <p class="text-gray-600 mt-2">From startups to enterprises — delivering performance and design.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10 transition-all hover:shadow-xl hover:-translate-y-1">
+          <div class="h-48 bg-gradient-to-br from-[#1B3A7A] to-[#29ABE2] flex items-center justify-center">
+            <i class="fas fa-store text-5xl text-white/80"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">FurniStore E‑commerce</h3>
+            <p class="text-sm text-gray-500">React + Node.js + Stripe</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10 transition-all hover:shadow-xl hover:-translate-y-1">
+          <div class="h-48 bg-[#F7941D] flex items-center justify-center">
+            <i class="fas fa-chalkboard-user text-5xl text-white"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">EdTech Platform</h3>
+            <p class="text-sm text-gray-500">Laravel + Livewire + MySQL</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#1B3A7A]/10 transition-all hover:shadow-xl hover:-translate-y-1">
+          <div class="h-48 bg-[#29ABE2] flex items-center justify-center">
+            <i class="fas fa-chart-line text-5xl text-white"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Dashboard Analytics</h3>
+            <p class="text-sm text-gray-500">React + D3 + Express</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY CHOOSE US / TECH STACK DETAILS ========== -->
+  <section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Content -->
+      <div>
+        <span class="text-[#29ABE2] font-semibold uppercase tracking-wider text-sm">Our Process</span>
+        <h2 class="text-3xl font-bold mt-2" style="color:#1B3A7A;">
+          Agile
+          <span style="border-bottom: 4px solid #F7941D; padding-bottom: 3px; margin-left: 6px;">Development</span>
+          Workflow
+        </h2>
+        <p class="text-gray-500 text-sm mt-3">A structured sprint-based approach that delivers fast, reliable, and scalable web solutions.</p>
+
+        <!-- Steps -->
+        <div class="mt-8 space-y-0">
+
+          <div class="dev-step flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="dev-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(27,58,122,0.1); color:#1B3A7A;">1</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #1B3A7A33, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Discovery & Planning</strong>
+              <p class="text-gray-500 text-sm">Requirements, wireframes, tech stack selection.</p>
+            </div>
+          </div>
+
+          <div class="dev-step flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="dev-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(41,171,226,0.1); color:#29ABE2;">2</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #29ABE233, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Design & Prototype</strong>
+              <p class="text-gray-500 text-sm">Interactive mockups, UI/UX approval.</p>
+            </div>
+          </div>
+
+          <div class="dev-step flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="dev-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(247,148,29,0.1); color:#F7941D;">3</div>
+              <div class="w-px h-8 mt-1" style="background: linear-gradient(to bottom, #F7941D33, transparent);"></div>
+            </div>
+            <div class="pb-6">
+              <strong class="block text-base" style="color:#1B3A7A;">Development & Testing</strong>
+              <p class="text-gray-500 text-sm">Sprint-based coding, QA, security audits.</p>
+            </div>
+          </div>
+
+          <div class="dev-step flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="dev-num w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgba(27,58,122,0.1); color:#1B3A7A;">4</div>
+            </div>
+            <div>
+              <strong class="block text-base" style="color:#1B3A7A;">Deployment & Support</strong>
+              <p class="text-gray-500 text-sm">Launch, maintenance, performance monitoring.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+        <img src="https://placehold.co/700x500/1B3A7A/FFFFFF?text=Agile+Development+Process&font=montserrat"
+          alt="development process" class="w-full h-auto transition-transform duration-500 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1B3A7A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+        <!-- Floating badge -->
+        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+          <i class="fas fa-code text-sm" style="color:#29ABE2;"></i>
+          <span class="text-xs font-semibold" style="color:#1B3A7A;">Full Stack Dev</span>
+        </div>
+
+        <!-- Bottom stat strip -->
+        <div class="absolute bottom-0 left-0 right-0 bg-[#1B3A7A]/80 backdrop-blur-sm px-6 py-3 flex justify-around">
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">30+</div>
+            <div class="text-white/60 text-xs">Sites Launched</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">99%</div>
+            <div class="text-white/60 text-xs">Uptime Record</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div class="text-center">
+            <div class="text-white font-bold text-lg">7day</div>
+            <div class="text-white/60 text-xs">Avg Delivery</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ========== REQUEST QUOTE FORM ========== -->
+  <section id="quote-form" class="py-20 bg-[#F2F3FB]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="text-[#F7941D] font-semibold uppercase tracking-wider">Start your project</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2" style="color:#1B3A7A;">Ready to build something <span class="text-[#29ABE2]">great?</span></h2>
+          <p class="text-gray-600 mt-4">Tell us about your web development needs — whether it's a business website, web app, or custom platform. We'll respond within 24 hours.</p>
+          <div class="mt-8 flex gap-4 flex-wrap">
+            <div class="flex items-center gap-2"><i class="fas fa-rocket text-[#29ABE2]"></i> Fast turnaround</div>
+            <div class="flex items-center gap-2"><i class="fas fa-code-branch text-[#29ABE2]"></i> Modern tech stack</div>
+            <div class="flex items-center gap-2"><i class="fas fa-headset text-[#29ABE2]"></i> 1 year free support</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#1B3A7A]/20">
+          <h3 class="text-2xl font-bold" style="color:#1B3A7A;">Request a Quote</h3>
+          <p class="text-gray-500 text-sm mb-5">Fill the form and we'll get back soon.</p>
+          <form id="webdevQuoteForm" action="#" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <input type="tel" id="phone" placeholder="Phone Number*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <select id="projectType" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700">
+                <option value="">What type of web project?</option>
+                <option>Business / Corporate Website</option>
+                <option>E‑commerce Store</option>
+                <option>Web Application / Dashboard</option>
+                <option>CMS (WordPress / Custom)</option>
+                <option>API / Backend Development</option>
+                <option>Maintenance & Support</option>
+              </select>
+            </div>
+            <div class="mb-5">
+              <textarea rows="4" id="message" placeholder="Describe your idea, features, timeline..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
+            </div>
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Request <i class="fas fa-paper-plane ml-2"></i></button>
+            <p class="text-xs text-center text-gray-400 mt-4">We respect your privacy. No spam.</p>
+          </form>
+          <div id="formStatus" class="mt-3 text-center text-sm font-medium hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER DESIGN ================= -->
+ <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center -gap-1 mb-5">
+          <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+            <img src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-2">
+            <span class="font-black text-lg tracking-widest block"
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs block -mt-1 tracking-widest"
+              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+        </a>
+
+        <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
+          Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
+          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
+          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          OUR SERVICES
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
+          <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
+          <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>
+          QUICK LINKS
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/index.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
+          <li><a href="/about.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
+          <li><a href="/contact.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          STAY CONNECTED
+        </h4>
+        <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
+        <div class="flex rounded-lg overflow-hidden border border-white/10">
+          <input type="email" placeholder="Your email address"
+            class="px-3 py-2 w-full text-sm focus:outline-none"
+            style="background:#ffffff10; color:white; placeholder-color:white;">
+          <button class="px-4 py-2 flex-shrink-0 transition-all duration-300"
+            style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Contact info -->
+        <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
+          <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
+      <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
+      <p>Designed by <span style="color:#9879f4; font-weight:600;">Talecat</span></p>
+    </div>
+  </div>
+</footer>
+
+  <!-- Scripts for mobile menu and form -->
+  <script>
+    // mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    }
+    const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+    const mobileDropdownPanel = document.getElementById('mobileDropdownPanel');
+    if (mobileServicesBtn && mobileDropdownPanel) {
+      mobileServicesBtn.addEventListener('click', () => {
+        mobileDropdownPanel.classList.toggle('hidden');
+        const icon = mobileServicesBtn.querySelector('i');
+        if(icon) icon.classList.toggle('rotate-180');
+      });
+    }
+    // smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId === "#" || targetId === "") return;
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if(mobileMenu && !mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+    // form submission simulation
+    const form = document.getElementById('webdevQuoteForm');
+    const statusDiv = document.getElementById('formStatus');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const phone = document.getElementById('phone')?.value.trim();
+        if(!name || !email || !phone) {
+          statusDiv.classList.remove('hidden');
+          statusDiv.innerHTML = '<span class="text-red-600">❌ Please fill name, email, and phone.</span>';
+          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+          return;
+        }
+        if(!email.includes('@')) {
+          statusDiv.innerHTML = '<span class="text-red-600">⚠️ Valid email required.</span>';
+          statusDiv.classList.remove('hidden');
+          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+          return;
+        }
+        statusDiv.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thank you! Our web development expert will contact you shortly.</span>';
+        statusDiv.classList.remove('hidden');
+        form.reset();
+        setTimeout(() => statusDiv.classList.add('hidden'), 5000);
+      });
+    }
+    // add rotate-slow keyframe if not defined
+    if (!document.querySelector('#rotate-style')) {
+      const style = document.createElement('style');
+      style.id = 'rotate-style';
+      style.textContent = `@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .rotate-slow { animation: spin-slow 15s linear infinite; }`;
+      document.head.appendChild(style);
+    }
+  </script>
+</body>
+</html>
