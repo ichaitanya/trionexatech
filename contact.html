@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact Us | Trionexatech – Let's Connect</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* brand colors */
+    :root {
+      --primary-deep: #1B3A7A;
+      --primary-mid: #1B3A7A;
+      --accent-blue: #29ABE2;
+      --accent-orange: #F7941D;
+      --white-light: #F9FAFE;
+    }
+    body {
+      background-color: var(--white-light);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    /* dropdown & buttons */
+    .dropdown-menu {
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+    }
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .btn-primary {
+      background-color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-deep);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--primary-mid);
+      color: var(--primary-mid);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background-color: var(--primary-mid);
+      color: white;
+    }
+    /* footer styles */
+    .footer-link {
+      color: #a0b4d6;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      display: inline-block;
+    }
+    .footer-link:hover {
+      color: #ffffff;
+      padding-left: 4px;
+    }
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+      color: #1B3A7A;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon:nth-child(1):hover { background: #1877F2; color: white; } /* Facebook */
+    .social-icon:nth-child(2):hover { background: #1DA1F2; color: white; } /* Twitter */
+    .social-icon:nth-child(3):hover { background: #0A66C2; color: white; } /* LinkedIn */
+    .social-icon:nth-child(4):hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; } /* Instagram */
+
+    .footer-social {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .footer-social:hover { transform: translateY(-3px); }
+    .footer-social.fb:hover { background: #1877F2; }
+    .footer-social.tw:hover { background: #1DA1F2; }
+    .footer-social.li:hover { background: #0A66C2; }
+    .footer-social.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    
+    /* animated background elements */
+    .animated-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      animation: floatOrb 12s infinite alternate ease-in-out;
+    }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.1); }
+    }
+    @keyframes floatOrb2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, 40px) scale(1.15); }
+    }
+    .wave-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: repeating-linear-gradient( transparent 0px, transparent 29px, rgba(41, 171, 226, 0.08) 30px);
+      pointer-events: none;
+    }
+    .contact-card {
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -12px rgba(27, 58, 122, 0.15);
+    }
+    input, textarea, select {
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.2);
+    }
+  </style>
+</head>
+<body class="antialiased">
+<!-- ================= NAVIGATION BAR ================= -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-50 border-b border-[#1B3A7A]/30">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <!-- Logo Area -->
+        <a href="/index.html" class="flex items-center -gap-1">
+          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+            <img id="companyLogo" src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-3">
+            <span class="font-black text-xl md:text-2xl tracking-widest block" 
+              style="color: #1B3A7A; font-family: 'Exo 2', sans-serif; letter-spacing: 0.12em;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
+              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+      </a>
+        
+
+        <!-- Desktop Menu + Dropdown (hidden on mobile) -->
+        <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <a href="/index.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">About us</a>
+          
+          <!-- Services Dropdown (desktop) -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 font-medium transition hover:text-[#0F0E47]" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
+            </button>
+            <div class="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+              <a href="/cctv.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-video text-[#1B3A7A] w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-palette text-[#1B3A7A] w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 px-4 py-2.5 hover:bg-[#F2F2FA] transition text-[#1B3A7A]"><i class="fas fa-code text-[#1B3A7A] w-5"></i>Web Development</a>
+            </div>
+          </div>
+          
+          <a href="/contact.html" class="font-medium transition hover:border-b-2 border-[#1B3A7A]" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white px-5 py-2 rounded-full shadow-md text-sm font-semibold">Get Quote</a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileMenuBtn" class="focus:outline-none text-[#1B3A7A] text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Dropdown Menu (hidden by default) -->
+      <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-[#1B3A7A]/30 pb-4 px-2">
+        <div class="flex flex-col space-y-3 mt-3">
+          <a href="/index.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Home</a>
+          <a href="/about.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">About us</a>
+          <!-- mobile services with sub (collapsible) -->
+          <div x-data="{ open: false }" id="mobileServices">
+            <button id="mobileServicesBtn" class="flex justify-between items-center w-full py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">
+              Services <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div id="mobileDropdownPanel" class="hidden pl-5 mt-1 space-y-2">
+              <a href="/cctv.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-video w-5"></i>CCTV Surveillance</a>
+              <a href="/graphic.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-palette w-5"></i>Graphic Designing</a>
+              <a href="/web.html" class="flex items-center gap-3 py-2 px-2 text-sm"><i class="fas fa-code w-5"></i>Web Development</a>
+            </div>
+          </div>
+          <a href="/contact.html" class="py-2 px-3 rounded-lg hover:bg-gray-100 font-medium" style="color:#1B3A7A;">Contact</a>
+          <a href="#getintouch" class="btn-primary text-white text-center py-2 px-4 rounded-full">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION (minimal, clean, animated background) ========== -->
+  <section class="animated-bg relative py-20 md:py-28 overflow-hidden bg-white">
+    <!-- Animated background elements -->
+    <div class="bg-orb w-96 h-96 bg-[#29ABE2] top-[-100px] left-[-100px] opacity-30" style="animation: floatOrb 10s infinite alternate;"></div>
+    <div class="bg-orb w-80 h-80 bg-[#F7941D] bottom-[-80px] right-[-50px] opacity-30" style="animation: floatOrb2 12s infinite alternate;"></div>
+    <div class="bg-orb w-64 h-64 bg-[#1B3A7A] top-1/3 right-1/4 opacity-20" style="animation: floatOrb 15s infinite alternate-reverse;"></div>
+    <div class="wave-bg"></div>
+    
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-1.5 text-[#1B3A7A] text-sm font-semibold mb-5 shadow-sm">
+          <i class="fas fa-comment-dots text-[#29ABE2]"></i> <span>Let's Talk</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight" style="color:#1B3A7A;">
+          Get in <span style="color:#29ABE2;">Touch</span>
+        </h1>
+        <p class="text-gray-600 mt-4 text-lg max-w-md mx-auto">
+          We're just a message away. Whether it's a project, a question, or just a hello — we'd love to hear from you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT INFO + FORM (clean two-column) ========== -->
+  <section class="py-16 md:py-20 bg-white relative z-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-12">
+        
+        <!-- LEFT: contact details & info cards -->
+        <div>
+          <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold" style="color:#1B3A7A;">Reach out directly</h2>
+            <div class="w-16 h-0.5 bg-[#F7941D] mt-3 mb-5"></div>
+            <p class="text-gray-600">Our team is available Mon–Fri, 9am–6pm IST. We typically respond within 24 hours.</p>
+          </div>
+          
+          <div class="space-y-6">
+            <!-- Phone -->
+            <div class="contact-card flex items-start gap-5 p-4 rounded-xl bg-[#F8FAFE] border border-gray-100">
+              <div class="w-12 h-12 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone-alt text-xl text-[#1B3A7A]"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800">Phone</h3>
+                <p class="text-[#29ABE2] font-medium">+91 90968 28221</p>
+                <p class="text-sm text-gray-500">Emergency / Sales</p>
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="contact-card flex items-start gap-5 p-4 rounded-xl bg-[#F8FAFE] border border-gray-100">
+              <div class="w-12 h-12 rounded-full bg-[#29ABE2]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-xl text-[#29ABE2]"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800">Email</h3>
+                <p class="text-[#1B3A7A] font-medium">shashankvt21@gmail.com</p>
+                <p class="text-[#1B3A7A] font-medium">vikastribhuwan@gmail.com</p>
+                <p class="text-sm text-gray-500">For general inquiries & support</p>
+              </div>
+            </div>
+            
+            <!-- Office -->
+            <div class="contact-card flex items-start gap-5 p-4 rounded-xl bg-[#F8FAFE] border border-gray-100">
+              <div class="w-12 h-12 rounded-full bg-[#F7941D]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-map-marker-alt text-xl text-[#F7941D]"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-800">Visit Us</h3>
+                <p class="text-gray-700">09, Shiv Kutir Apt., Belavali,<br>Badlapur West, Maharashtra, 421503</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Social links -->
+          <div class="mt-10">
+            <h3 class="font-semibold text-gray-700 mb-3">Connect socially</h3>
+            <div class="flex gap-4">
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- RIGHT: contact form -->
+        <div id="contact-form" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+          <h3 class="text-2xl font-bold" style="color:#1B3A7A;">Send a Message</h3>
+          <p class="text-gray-500 text-sm mb-5">We'll get back to you within 24 hours.</p>
+          <form id="contactForm" action="#" method="POST">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <input type="text" id="name" placeholder="Full Name *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+              <input type="email" id="email" placeholder="Email Address *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <input type="tel" id="phone" placeholder="Phone Number (optional)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+            </div>
+            <div class="mb-4">
+              <select id="subject" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 focus:border-[#29ABE2]">
+                <option value="">How can we help? *</option>
+                <option>General Inquiry</option>
+                <option>CCTV Surveillance Quote</option>
+                <option>Graphic Design Project</option>
+                <option>Web Development Project</option>
+                <option>Partnership / Collaboration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-5">
+              <textarea rows="5" id="message" placeholder="Tell us more about your requirement..." required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50"></textarea>
+            </div>
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+            <p class="text-xs text-center text-gray-400 mt-4">By submitting, you agree to our privacy policy.</p>
+          </form>
+          <div id="formStatus" class="mt-3 text-center text-sm font-medium hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SIMPLE MAP / LOCATION CARD (optional minimal) ========== -->
+  <div class="py-8 px-5 sm:px-8 lg:px-12 max-w-7xl mx-auto mb-10">
+    <div class="bg-[#F8FAFE] rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-gray-100">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center"><i class="fas fa-clock text-[#1B3A7A] text-xl"></i></div>
+        <div><p class="font-semibold">Business Hours</p><p class="text-sm text-gray-500">Monday – Friday: 9:00 AM – 6:00 PM IST</p></div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[#29ABE2]/10 flex items-center justify-center"><i class="fas fa-globe text-[#29ABE2] text-xl"></i></div>
+        <div><p class="font-semibold">Remote Support</p><p class="text-sm text-gray-500">24/7 online assistance for urgent issues</p></div>
+      </div>
+      <a href="mailto:shashankvt21@gmail.com" class="text-[#1B3A7A] font-medium underline-offset-2 hover:underline">support@trionexatech.com →</a>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER DESIGN ================= -->
+ <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center -gap-1 mb-5">
+          <div class="w-16 h-16 flex items-center justify-center flex-shrink-0">
+            <img src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
+          </div>
+          <div class="-ml-2">
+            <span class="font-black text-lg tracking-widest block"
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.12em; color: #ffffff;">
+              TRIONEXATECH
+            </span>
+            <span class="text-xs block -mt-1 tracking-widest"
+              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              Secure | Create | Innovate
+            </span>
+          </div>
+        </a>
+
+        <p class="text-sm leading-relaxed mb-6" style="color: #a0b4d6;">
+          Empowering businesses with advanced surveillance, creative design, and world-class web development solutions.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3">
+          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
+          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
+          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          OUR SERVICES
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
+          <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
+          <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#F7941D;"></span>
+          QUICK LINKS
+        </h4>
+        <ul class="space-y-3 text-sm" style="color:#a0b4d6;">
+          <li><a href="/index.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Home</a></li>
+          <li><a href="/about.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>About Us</a></li>
+          <li><a href="/contact.html" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Contact & Support</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-chevron-right mr-2 text-xs" style="color:#F7941D;"></i>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="text-base font-bold mb-5 flex items-center gap-2"
+          style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em;">
+          <span class="w-1 h-5 rounded-full inline-block" style="background:#29ABE2;"></span>
+          STAY CONNECTED
+        </h4>
+        <p class="text-sm mb-4" style="color:#a0b4d6;">Get updates & offers straight to your inbox.</p>
+        <div class="flex rounded-lg overflow-hidden border border-white/10">
+          <input type="email" placeholder="Your email address"
+            class="px-3 py-2 w-full text-sm focus:outline-none"
+            style="background:#ffffff10; color:white; placeholder-color:white;">
+          <button class="px-4 py-2 flex-shrink-0 transition-all duration-300"
+            style="background: linear-gradient(135deg, #29ABE2, #1B3A7A);">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Contact info -->
+        <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
+          <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm"
+      style="border-top: 1px solid rgba(255,255,255,0.1); color:#a0b4d6;">
+      <p>&copy; 2026 <span style="color:#29ABE2; font-weight:600;">Trionexatech</span> — All Rights Reserved.</p>
+      <p>Designed by <span style="color:#9879f4; font-weight:600;">Talecat</span></p>
+    </div>
+  </div>
+</footer>
+
+  <!-- Scripts for mobile menu & form submission simulation -->
+  <script>
+    // mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    }
+    const mobileServicesBtn = document.getElementById('mobileServicesBtn');
+    const mobileDropdownPanel = document.getElementById('mobileDropdownPanel');
+    if (mobileServicesBtn && mobileDropdownPanel) {
+      mobileServicesBtn.addEventListener('click', () => {
+        mobileDropdownPanel.classList.toggle('hidden');
+        const icon = mobileServicesBtn.querySelector('i');
+        if(icon) icon.classList.toggle('rotate-180');
+      });
+    }
+    // smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId === "#" || targetId === "") return;
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if(mobileMenu && !mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+    // contact form simulation (clean)
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const subject = document.getElementById('subject')?.value;
+        if (!name || !email) {
+          formStatus.classList.remove('hidden');
+          formStatus.innerHTML = '<span class="text-red-600">❌ Please fill name and email.</span>';
+          setTimeout(() => formStatus.classList.add('hidden'), 3000);
+          return;
+        }
+        if (!email.includes('@')) {
+          formStatus.innerHTML = '<span class="text-red-600">⚠️ Enter a valid email address.</span>';
+          formStatus.classList.remove('hidden');
+          setTimeout(() => formStatus.classList.add('hidden'), 3000);
+          return;
+        }
+        if (!subject) {
+          formStatus.innerHTML = '<span class="text-red-600">⚠️ Please select a subject.</span>';
+          formStatus.classList.remove('hidden');
+          setTimeout(() => formStatus.classList.add('hidden'), 3000);
+          return;
+        }
+        formStatus.classList.remove('hidden');
+        formStatus.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thanks! Your message has been sent. We’ll reply shortly.</span>';
+        contactForm.reset();
+        setTimeout(() => {
+          formStatus.classList.add('hidden');
+        }, 5000);
+      });
+    }
+  </script>
+</body>
+</html>
