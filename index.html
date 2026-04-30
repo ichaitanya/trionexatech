@@ -453,7 +453,9 @@ input::placeholder { color: rgba(255,255,255,0.4); }
             <div class="mb-5">
               <textarea rows="4" id="message" placeholder="Tell us about your project requirements..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
             </div>
-            <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+            <button type="submit" id="submitBtn" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">
+              Send Message <i class="fas fa-paper-plane ml-2"></i>
+            </button>
             <p class="text-xs text-center text-gray-400 mt-4">By submitting, you agree to our privacy policy.</p>
           </form>
           <div id="formStatus" class="mt-3 text-center text-sm font-medium hidden"></div>
@@ -566,7 +568,7 @@ input::placeholder { color: rgba(255,255,255,0.4); }
   </div>
 </footer>
 
-  <!-- Additional JavaScript for mobile menu toggle, form handler, dropdown interactive -->`
+  <!-- Additional JavaScript for mobile menu toggle, form handler, dropdown interactive -->
   <script>
     // Mobile menu toggle
     const mobileBtn = document.getElementById('mobileMenuBtn');
@@ -605,40 +607,82 @@ input::placeholder { color: rgba(255,255,255,0.4); }
       });
     });
 
-    // Contact form simple submission simulation with validation (demo)
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    if(contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name')?.value.trim();
-        const email = document.getElementById('email')?.value.trim();
-        if(!name || !email) {
-          formStatus.classList.remove('hidden');
-          formStatus.innerHTML = '<span class="text-red-600">❌ Please fill name and email.</span>';
-          formStatus.classList.remove('hidden');
-          setTimeout(() => formStatus.classList.add('hidden'), 3000);
-          return;
-        }
-        if(!email.includes('@') || !email.includes('.')) {
-          formStatus.innerHTML = '<span class="text-red-600">⚠️ Enter valid email.</span>';
-          formStatus.classList.remove('hidden');
-          setTimeout(() => formStatus.classList.add('hidden'), 3000);
-          return;
-        }
-        // success simulation
-        formStatus.classList.remove('hidden');
-        formStatus.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thank you! Team Trionexatech will contact soon.</span>';
-        contactForm.reset();
-        setTimeout(() => {
-          formStatus.classList.add('hidden');
-        }, 5000);
-      });
-    }
-
     // optional update logo if user provides custom (demo note: you can replace 'logoUrl' with actual user logo)
     // For demonstration the placeholder shows T logo, but you can set any real logo using developer tools or replace image src.
     // we keep consistent placeholder with colors.
   </script>
+  <!-- EmailJS SDK (add this just before closing </body> or at end of page) -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+   // ================= EMAILJS CONFIGURATION =================
+  // 🔴 REPLACE THESE THREE VALUES WITH YOUR OWN FROM EMAILJS 🔴
+  const EMAILJS_PUBLIC_KEY = "JvbeSHly8I9hCxNSw";   // Get from EmailJS Account > API Keys
+  const EMAILJS_SERVICE_ID = "service_yr4vr1w";           // e.g., "service_abc123"
+  const EMAILJS_TEMPLATE_ID = "template_gz91lzx";         // e.g., "template_xyz789"
+
+  // Initialize EmailJS
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  const form = document.getElementById('contactForm');
+  const statusDiv = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('serviceInterest').value;
+    const message = document.getElementById('message').value.trim();
+
+    // Validation
+    if (!name || !email || !service || !message) {
+      showStatus('❌ Please fill all required fields.', 'red');
+      return;
+    }
+    if (!email.includes('@')) {
+      showStatus('⚠️ Please enter a valid email address.', 'red');
+      return;
+    }
+
+    // Disable button & show loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+    // Prepare template parameters (match your EmailJS template variables)
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      phone_number: phone || "Not provided",
+      service_interest: service,
+      message: message,
+      to_email: "chaitanya.tribhuvan01@gmail.com"   // Your email address (can also be set inside EmailJS template)
+    };
+
+    try {
+      const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      console.log('Email sent:', response);
+      showStatus('✅ Message sent successfully! We’ll reply within 24 hours.', 'green');
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      showStatus('❌ Failed to send. Please try again later or call us directly.', 'red');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane ml-2"></i>';
+      setTimeout(() => statusDiv.classList.add('hidden'), 5000);
+    }
+  });
+
+  function showStatus(msg, color) {
+    statusDiv.classList.remove('hidden', 'text-red-600', 'text-green-600');
+    if (color === 'red') statusDiv.classList.add('text-red-600');
+    else statusDiv.classList.add('text-green-600');
+    statusDiv.innerHTML = msg;
+    statusDiv.classList.remove('hidden');
+  }
+</script>
 </body>
 </html>
