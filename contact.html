@@ -77,9 +77,7 @@
     }
 
     .social-icon:nth-child(1):hover { background: #1877F2; color: white; } /* Facebook */
-    .social-icon:nth-child(2):hover { background: #1DA1F2; color: white; } /* Twitter */
-    .social-icon:nth-child(3):hover { background: #0A66C2; color: white; } /* LinkedIn */
-    .social-icon:nth-child(4):hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; } /* Instagram */
+    .social-icon:nth-child(2):hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; } /* Instagram */
 
     .footer-social {
       width: 34px;
@@ -151,7 +149,7 @@
       <div class="flex justify-between items-center h-16 md:h-20">
         <!-- Logo Area -->
         <a href="/index.html" class="flex items-center -gap-1">
-          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+          <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center flex-shrink-0">
             <img id="companyLogo" src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
           </div>
           <div class="-ml-3">
@@ -160,7 +158,7 @@
               TRIONEXATECH
             </span>
             <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
-              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              style="color: #F7941D ; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em; font-weight: bold;">
               Secure | Create | Innovate
             </span>
           </div>
@@ -252,7 +250,7 @@
           <div class="mb-8">
             <h2 class="text-2xl md:text-3xl font-bold" style="color:#1B3A7A;">Reach out directly</h2>
             <div class="w-16 h-0.5 bg-[#F7941D] mt-3 mb-5"></div>
-            <p class="text-gray-600">Our team is available Mon–Fri, 9am–6pm IST. We typically respond within 24 hours.</p>
+            <p class="text-gray-600">Our team is available Mon–Fri, 10am–6pm IST. We typically respond within 24 hours.</p>
           </div>
           
           <div class="space-y-6">
@@ -275,8 +273,8 @@
               </div>
               <div>
                 <h3 class="font-bold text-gray-800">Email</h3>
+                <p class="text-[#1B3A7A] font-medium">trionexatechno@gmail.com</p>
                 <p class="text-[#1B3A7A] font-medium">shashankvt21@gmail.com</p>
-                <p class="text-[#1B3A7A] font-medium">vikastribhuwan@gmail.com</p>
                 <p class="text-sm text-gray-500">For general inquiries & support</p>
               </div>
             </div>
@@ -288,7 +286,7 @@
               </div>
               <div>
                 <h3 class="font-bold text-gray-800">Visit Us</h3>
-                <p class="text-gray-700">09, Shiv Kutir Apt., Belavali,<br>Badlapur West, Maharashtra, 421503</p>
+                <p class="text-gray-700"> Belavali,<br>Badlapur West, Maharashtra, 421503</p>
               </div>
             </div>
           </div>
@@ -297,10 +295,8 @@
           <div class="mt-10">
             <h3 class="font-semibold text-gray-700 mb-3">Connect socially</h3>
             <div class="flex gap-4">
-              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61588896431561" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/trionexatech" class="social-icon"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
         </div>
@@ -311,25 +307,26 @@
           <p class="text-gray-500 text-sm mb-5">We'll get back to you within 24 hours.</p>
           <form id="contactForm" action="#" method="POST">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <input type="text" id="name" placeholder="Full Name *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
-              <input type="email" id="email" placeholder="Email Address *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+              <input type="text" id="name" name="from_name" placeholder="Full Name *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+              <input type="email" id="email" name="from_email" placeholder="Email Address *" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
             </div>
             <div class="mb-4">
-              <input type="tel" id="phone" placeholder="Phone Number (optional)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+              <input type="tel" id="phone" name="phone_number" placeholder="Phone Number (optional)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50">
+
             </div>
             <div class="mb-4">
-              <select id="subject" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 focus:border-[#29ABE2]">
+              <select id="service" name="service_interest" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 focus:border-[#29ABE2]">
                 <option value="">How can we help? *</option>
-                <option>General Inquiry</option>
-                <option>CCTV Surveillance Quote</option>
-                <option>Graphic Design Project</option>
-                <option>Web Development Project</option>
-                <option>Partnership / Collaboration</option>
-                <option>Other</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="CCTV Surveillance Quote">CCTV Surveillance Quote</option>
+                <option value="Graphic Design Project">Graphic Design Project</option>
+                <option value="Web Development Project">Web Development Project</option>
+                <option value="Partnership / Collaboration">Partnership / Collaboration</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div class="mb-5">
-              <textarea rows="5" id="message" placeholder="Tell us more about your requirement..." required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50"></textarea>
+             <textarea rows="5" id="message" name="message" placeholder="Tell us more about your requirement..." required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#29ABE2] bg-gray-50"></textarea>
             </div>
             <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
             <p class="text-xs text-center text-gray-400 mt-4">By submitting, you agree to our privacy policy.</p>
@@ -345,7 +342,7 @@
     <div class="bg-[#F8FAFE] rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-gray-100">
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 rounded-full bg-[#1B3A7A]/10 flex items-center justify-center"><i class="fas fa-clock text-[#1B3A7A] text-xl"></i></div>
-        <div><p class="font-semibold">Business Hours</p><p class="text-sm text-gray-500">Monday – Friday: 9:00 AM – 6:00 PM IST</p></div>
+        <div><p class="font-semibold">Business Hours</p><p class="text-sm text-gray-500">Monday – Friday: 10:00 AM – 6:00 PM IST</p></div>
       </div>
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 rounded-full bg-[#29ABE2]/10 flex items-center justify-center"><i class="fas fa-globe text-[#29ABE2] text-xl"></i></div>
@@ -373,7 +370,7 @@
               TRIONEXATECH
             </span>
             <span class="text-xs block -mt-1 tracking-widest"
-              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              style="color: #F7941D; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
               Secure | Create | Innovate
             </span>
           </div>
@@ -385,10 +382,8 @@
 
         <!-- Social icons -->
         <div class="flex gap-3">
-          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
-          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
-          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
-          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61588896431561" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="https://www.instagram.com/trionexatech" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
         </div>
       </div>
 
@@ -403,7 +398,6 @@
           <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
           <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
           <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
-          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
         </ul>
       </div>
 
@@ -442,7 +436,7 @@
 
         <!-- Contact info -->
         <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
-          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>trionexatechno@gmail.com</p>
           <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
           <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
         </div>
@@ -489,41 +483,141 @@
         }
       });
     });
-    // contact form simulation (clean)
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name')?.value.trim();
-        const email = document.getElementById('email')?.value.trim();
-        const subject = document.getElementById('subject')?.value;
-        if (!name || !email) {
-          formStatus.classList.remove('hidden');
-          formStatus.innerHTML = '<span class="text-red-600">❌ Please fill name and email.</span>';
-          setTimeout(() => formStatus.classList.add('hidden'), 3000);
-          return;
-        }
-        if (!email.includes('@')) {
-          formStatus.innerHTML = '<span class="text-red-600">⚠️ Enter a valid email address.</span>';
-          formStatus.classList.remove('hidden');
-          setTimeout(() => formStatus.classList.add('hidden'), 3000);
-          return;
-        }
-        if (!subject) {
-          formStatus.innerHTML = '<span class="text-red-600">⚠️ Please select a subject.</span>';
-          formStatus.classList.remove('hidden');
-          setTimeout(() => formStatus.classList.add('hidden'), 3000);
-          return;
-        }
-        formStatus.classList.remove('hidden');
-        formStatus.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thanks! Your message has been sent. We’ll reply shortly.</span>';
-        contactForm.reset();
-        setTimeout(() => {
-          formStatus.classList.add('hidden');
-        }, 5000);
-      });
-    }
   </script>
+  <!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+  // ================= EMAILJS CONFIGURATION =================
+
+  const EMAILJS_PUBLIC_KEY = "bRdTLW_t31jkDKWII";
+  const EMAILJS_SERVICE_ID = "service_nez12qg";
+  const EMAILJS_TEMPLATE_ID = "template_0q11n4u";
+
+  // Initialize EmailJS
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  const form = document.getElementById('contactForm');
+  const statusDiv = document.getElementById('formStatus');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+
+    // Validation
+    if (!name || !email || !service || !message) {
+
+      showStatus(
+        '❌ Please fill all required fields.',
+        'red'
+      );
+
+      return;
+    }
+
+    if (!email.includes('@')) {
+
+      showStatus(
+        '⚠️ Please enter a valid email address.',
+        'red'
+      );
+
+      return;
+    }
+
+    // Disable button & show loading
+    submitBtn.disabled = true;
+
+    submitBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+    // Prepare template parameters
+    const templateParams = {
+
+      from_name: name,
+      from_email: email,
+      phone_number: phone || "Not Provided",
+      service_interest: service,
+      message: message,
+      to_email: "trionexatechno@gmail.com"
+
+    };
+
+    try {
+
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      console.log('Email sent:', response);
+
+      showStatus(
+        '✅ Message sent successfully! We’ll reply within 24 hours.',
+        'green'
+      );
+
+      form.reset();
+
+    } catch (error) {
+
+      console.error('EmailJS error:', error);
+
+      showStatus(
+        '❌ Failed to send. Please try again later.',
+        'red'
+      );
+
+    } finally {
+
+      submitBtn.disabled = false;
+
+      submitBtn.innerHTML =
+        'Send Message <i class="fas fa-paper-plane ml-2"></i>';
+
+      setTimeout(() => {
+
+        statusDiv.classList.add('hidden');
+
+      }, 5000);
+
+    }
+
+  });
+
+  function showStatus(msg, color) {
+
+    statusDiv.classList.remove(
+      'hidden',
+      'text-red-600',
+      'text-green-600'
+    );
+
+    if (color === 'red') {
+
+      statusDiv.classList.add('text-red-600');
+
+    } else {
+
+      statusDiv.classList.add('text-green-600');
+
+    }
+
+    statusDiv.innerHTML = msg;
+    statusDiv.classList.remove('hidden');
+
+  }
+
+</script>
 </body>
 </html>

@@ -162,8 +162,8 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
       <div class="flex justify-between items-center h-16 md:h-20">
         <!-- Logo Area -->
-        <a href="index.html" class="flex items-center -gap-1">
-          <div class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center flex-shrink-0">
+        <a href="/index.html" class="flex items-center -gap-1">
+          <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center flex-shrink-0">
             <img id="companyLogo" src="assets/main.png" alt="Trionexatech Logo" class="w-full h-full object-contain">
           </div>
           <div class="-ml-3">
@@ -172,12 +172,12 @@
               TRIONEXATECH
             </span>
             <span class="text-xs md:text-sm block -mt-1 tracking-widest" 
-              style="color: #29ABE2; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em;">
+              style="color: #F7941D ; font-family: 'Exo 2', sans-serif; letter-spacing: 0.2em; font-weight: bold;">
               Secure | Create | Innovate
             </span>
           </div>
       </a>
-        
+      
 
         <!-- Desktop Menu + Dropdown (hidden on mobile) -->
         <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -507,25 +507,25 @@
           <p class="text-gray-500 text-sm mb-5">Share your project details.</p>
           <form id="designQuoteForm" action="#" method="POST">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <input type="text" id="name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
-              <input type="email" id="email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="text" id="name" name="from_name" placeholder="Full Name*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="email" id="email" name="from_email" placeholder="Email Address*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
             </div>
             <div class="mb-4">
-              <input type="tel" id="phone" placeholder="Phone Number*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
+              <input type="tel" id="phone" name="phone_number" placeholder="Phone Number*" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50">
             </div>
             <div class="mb-4">
-              <select id="designType" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700">
+              <select id="designType" name="design_service" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-700">
                 <option value="">What design service do you need?</option>
-                <option>Logo & Brand Identity</option>
-                <option>Social Media Graphics</option>
-                <option>UI/UX Design (Web/App)</option>
-                <option>Print Design (Brochure, Flyer, etc.)</option>
-                <option>Motion Graphics / Animation</option>
-                <option>Complete Branding Package</option>
+                <option value="Logo & Brand Identity">Logo & Brand Identity</option>
+                <option value="Social Media Graphics">Social Media Graphics</option>
+                <option value="UI/UX Design (Web/App)">UI/UX Design (Web/App)</option>
+                <option value="Print Design">Print Design (Brochure, Flyer, etc.)</option>
+                <option value="Motion Graphics / Animation">Motion Graphics / Animation</option>
+                <option value="Complete Branding Package">Complete Branding Package</option>
               </select>
             </div>
             <div class="mb-5">
-              <textarea rows="4" id="message" placeholder="Describe your brand, style preferences, and deliverables..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
+              <textarea rows="4" id="message" name="message" placeholder="Describe your brand, style preferences, and deliverables..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#1B3A7A] bg-gray-50"></textarea>
             </div>
             <button type="submit" class="w-full btn-primary text-white font-semibold py-3 rounded-xl shadow-md transition-all hover:shadow-lg">Send Request <i class="fas fa-paper-plane ml-2"></i></button>
             <p class="text-xs text-center text-gray-400 mt-4">We respect your privacy. No spam.</p>
@@ -535,6 +535,141 @@
       </div>
     </div>
   </section>
+  <!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+  // ================= EMAILJS CONFIGURATION =================
+
+  const EMAILJS_PUBLIC_KEY = "bRdTLW_t31jkDKWII";
+  const EMAILJS_SERVICE_ID = "service_nez12qg";
+  const EMAILJS_TEMPLATE_ID = "template_jac7wmn";
+
+  // Initialize EmailJS
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  const form = document.getElementById('designQuoteForm');
+  const statusDiv = document.getElementById('formStatus');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const designType = document.getElementById('designType').value;
+    const message = document.getElementById('message').value.trim();
+
+    // Validation
+    if (!name || !email || !phone || !designType || !message) {
+
+      showStatus(
+        '❌ Please fill all required fields.',
+        'red'
+      );
+
+      return;
+    }
+
+    if (!email.includes('@')) {
+
+      showStatus(
+        '⚠️ Please enter a valid email address.',
+        'red'
+      );
+
+      return;
+    }
+
+    // Disable button & show loading
+    submitBtn.disabled = true;
+
+    submitBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+    // Prepare template parameters
+    const templateParams = {
+
+      from_name: name,
+      from_email: email,
+      phone_number: phone,
+      design_service: designType,
+      message: message,
+      to_email: "trionexatechno@gmail.com"
+
+    };
+
+    try {
+
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      console.log('Email sent:', response);
+
+      showStatus(
+        '✅ Quote request sent successfully! We’ll reply within 24 hours.',
+        'green'
+      );
+
+      form.reset();
+
+    } catch (error) {
+
+      console.error('EmailJS error:', error);
+
+      showStatus(
+        '❌ Failed to send. Please try again later.',
+        'red'
+      );
+
+    } finally {
+
+      submitBtn.disabled = false;
+
+      submitBtn.innerHTML =
+        'Send Request <i class="fas fa-paper-plane ml-2"></i>';
+
+      setTimeout(() => {
+
+        statusDiv.classList.add('hidden');
+
+      }, 5000);
+
+    }
+
+  });
+
+  function showStatus(msg, color) {
+
+    statusDiv.classList.remove(
+      'hidden',
+      'text-red-600',
+      'text-green-600'
+    );
+
+    if (color === 'red') {
+
+      statusDiv.classList.add('text-red-600');
+
+    } else {
+
+      statusDiv.classList.add('text-green-600');
+
+    }
+
+    statusDiv.innerHTML = msg;
+    statusDiv.classList.remove('hidden');
+
+  }
+
+</script>
 
   <!-- ============= FOOTER ============= -->
   <footer style="background: linear-gradient(135deg, #0a1628 0%, #1B3A7A 100%);" class="text-white pt-16 pb-8">
@@ -554,7 +689,7 @@
               TRIONEXATECH
             </span>
             <span class="text-xs block -mt-1 tracking-widest"
-              style="color: #29ABE2; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
+              style="color: #F7941D; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.2em;">
               Secure | Create | Innovate
             </span>
           </div>
@@ -566,10 +701,8 @@
 
         <!-- Social icons -->
         <div class="flex gap-3">
-          <a href="#" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
-          <a href="#" class="footer-social tw"><i class="fab fa-twitter text-xs"></i></a>
-          <a href="#" class="footer-social li"><i class="fab fa-linkedin-in text-xs"></i></a>
-          <a href="#" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61588896431561" class="footer-social fb"><i class="fab fa-facebook-f text-xs"></i></a>
+          <a href="https://www.instagram.com/trionexatech" class="footer-social ig"><i class="fab fa-instagram text-xs"></i></a>
         </div>
       </div>
 
@@ -584,7 +717,6 @@
           <li><a href="/cctv.html" class="footer-link"><i class="fas fa-video mr-2 text-xs" style="color:#29ABE2;"></i>CCTV Surveillance</a></li>
           <li><a href="/graphic.html" class="footer-link"><i class="fas fa-palette mr-2 text-xs" style="color:#29ABE2;"></i>Graphic Designing</a></li>
           <li><a href="/web.html" class="footer-link"><i class="fas fa-code mr-2 text-xs" style="color:#29ABE2;"></i>Web Development</a></li>
-          <li><a href="#" class="footer-link"><i class="fas fa-laptop mr-2 text-xs" style="color:#29ABE2;"></i>IT Consulting</a></li>
         </ul>
       </div>
 
@@ -623,7 +755,7 @@
 
         <!-- Contact info -->
         <div class="mt-5 space-y-2 text-sm" style="color:#a0b4d6;">
-          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>shashankvt21@gmail.com</p>
+          <p><i class="fas fa-envelope mr-2" style="color:#29ABE2;"></i>trionexatechno@gmail.com</p>
           <p><i class="fas fa-phone mr-2" style="color:#29ABE2;"></i>+91 90968 28221</p>
           <p><i class="fas fa-map-marker-alt mr-2" style="color:#29ABE2;"></i>Badlapur, India</p>
         </div>
@@ -670,33 +802,6 @@
         }
       });
     });
-    // form submission simulation
-    const form = document.getElementById('designQuoteForm');
-    const statusDiv = document.getElementById('formStatus');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name')?.value.trim();
-        const email = document.getElementById('email')?.value.trim();
-        const phone = document.getElementById('phone')?.value.trim();
-        if(!name || !email || !phone) {
-          statusDiv.classList.remove('hidden');
-          statusDiv.innerHTML = '<span class="text-red-600">❌ Please fill name, email, and phone.</span>';
-          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
-          return;
-        }
-        if(!email.includes('@')) {
-          statusDiv.innerHTML = '<span class="text-red-600">⚠️ Valid email required.</span>';
-          statusDiv.classList.remove('hidden');
-          setTimeout(() => statusDiv.classList.add('hidden'), 3000);
-          return;
-        }
-        statusDiv.innerHTML = '<span class="text-green-700 bg-green-100 px-3 py-1 rounded-full">✅ Thank you! Our design team will reach out shortly with a free consultation.</span>';
-        statusDiv.classList.remove('hidden');
-        form.reset();
-        setTimeout(() => statusDiv.classList.add('hidden'), 5000);
-      });
-    }
     // custom spin-slow animation keyframes
     const styleSheet = document.createElement("style");
     styleSheet.textContent = `@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .animate-spin-slow { animation: spin-slow 12s linear infinite; }`;
